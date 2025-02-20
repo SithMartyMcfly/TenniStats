@@ -1,7 +1,12 @@
 *{
     padding: 0;
-    margin: 5px;
+    margin: 1%;
     box-sizing: border-box;
+}
+
+body{
+    background-color: green;
+    color: white;
 }
 
 #marcadorJuegos {
@@ -21,4 +26,31 @@ th{
 
 table{
     border: solid, black, 1px;
+    color: white;
 }
+
+.container {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    align-content: center;
+    margin-left: 2%;
+    border-radius: 20px;
+}
+
+.servicio{
+    background-color: yellow;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.contenedorPuntuacion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+

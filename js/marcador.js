@@ -14,20 +14,50 @@ const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 //VARIABLES GLOBALES
 let contadorA = 0;
 let contadorB = 0;
+let contadorPuntosTotalesTieBreak = 0
 let contadorJuegosA = 0;
 let contadorJuegosB = 0;
+let contadorJuegosTotales = 0;
 let contadorSetsA = 0;
 let contadorSetsB = 0;
-let enTieBreak = false;
+let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
 let numeroSets = 2;
+
+
+function actualizarServicio (){
+    let servicioA = document.getElementsByTagName('div')[1];
+    let servicioB = document.getElementsByTagName('div')[4];
+    if(!enTieBreak){
+        if ((contadorJuegosTotales)%2 !=0){
+            servicioA.style.visibility= "hidden";
+            servicioB.style.visibility= "visible";
+        } else {
+            servicioB.style.visibility= "hidden";
+            servicioA.style.visibility= "visible";
+        }
+    } else {
+        if (contadorPuntosTotalesTieBreak === 0){
+                 //cambio del primer punto del tiebreak
+        } else if ((contadorPuntosTotalesTieBreak-1) % 2 === 0){
+                servicioA.style.visibility= "hidden";
+                servicioB.style.visibility= "visible";
+            
+        } else {
+            servicioB.style.visibility= "hidden";
+            servicioA.style.visibility= "visible";
+        }
+
+    }
+}
 
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetA() {
-    marcadorJuegosA.lastElementChild.style.background='green';
+    marcadorJuegosA.lastElementChild.style.background='grey';
 }
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetB() {
-    marcadorJuegosB.lastElementChild.style.background='green';
+    marcadorJuegosB.lastElementChild.style.background='grey';
+    marcadorJuegosB.lastElementChild.style.background='grey';
 }
 //función que activa la puntuación especial de tieBreak
 function activarTieBreak() {
@@ -92,10 +122,11 @@ function resultadoA() {
         resultadoJuegosA();
     } else {
         contadorA++;
+        contadorPuntosTotalesTieBreak++;
         marcadorA.innerHTML = contadorA;
         resultadoJuegosA();
     }
-
+    actualizarServicio();
 }
 
 marcadorA.addEventListener('click', resultadoA);
@@ -136,11 +167,11 @@ function resultadoB() {
         resultadoJuegosB();
     } else {
         contadorB++;
+        contadorPuntosTotalesTieBreak++;
         marcadorB.innerHTML = contadorB;
         resultadoJuegosB();
     }
-
-
+    actualizarServicio();
 }
 
 marcadorB.addEventListener('click', resultadoB);
@@ -154,6 +185,7 @@ function resultadoJuegosA() {
     if (!enTieBreak) {
         if (contadorA >= 4 && contadorA > contadorB + 1) {
             contadorJuegosA++;
+            contadorJuegosTotales++;
             contadorA = 0;
             contadorB = 0;
             marcadorA.innerHTML = "0";
@@ -164,6 +196,7 @@ function resultadoJuegosA() {
     } else {
         if (contadorA >= 7 && contadorA > contadorB + 1) {
             contadorJuegosA++;
+            contadorJuegosTotales++;
             contadorA = 0;
             contadorB = 0;
             marcadorA.innerHTML = "0";
@@ -180,6 +213,7 @@ function resultadoJuegosB() {
     if (!enTieBreak) {
         if (contadorB >= 4 && contadorB > contadorA + 1) {
             contadorJuegosB++;
+            contadorJuegosTotales++;
             contadorB = 0;
             contadorA = 0;
             marcadorA.innerHTML = "0";
@@ -190,6 +224,7 @@ function resultadoJuegosB() {
     } else {
         if (contadorB >= 7 && contadorB > contadorA + 1) {
             contadorJuegosB++;
+            contadorJuegosTotales++;
             contadorB = 0;
             contadorA = 0;
             marcadorA.innerHTML = "0";
@@ -293,6 +328,7 @@ function setsTotalesB() {
             enTieBreak = false;
         }
     }
+   
 
    
 }
