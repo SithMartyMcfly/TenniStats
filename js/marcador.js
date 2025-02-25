@@ -23,32 +23,6 @@ let contadorSetsB = 0;
 let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
 let numeroSets = 2;
 
-
-function actualizarServicio (){
-    let servicioA = document.getElementsByTagName('div')[1];
-    let servicioB = document.getElementsByTagName('div')[4];
-    if(!enTieBreak){
-        if ((contadorJuegosTotales)%2 !=0){
-            servicioA.style.visibility= "hidden";
-            servicioB.style.visibility= "visible";
-        } else {
-            servicioB.style.visibility= "hidden";
-            servicioA.style.visibility= "visible";
-        }
-    } else {
-        if (contadorPuntosTotalesTieBreak === 0){
-            servicioB.style.visibility = "hidden";
-            servicioA.style.visibility = "visible";
-        } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2) {
-            servicioA.style.visibility = "hidden";
-            servicioB.style.visibility = "visible";
-        } else {
-            servicioB.style.visibility = "hidden";
-            servicioA.style.visibility = "visible";
-        }
-    }
-}
-
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetA() {
     marcadorJuegosA.lastElementChild.style.background='grey';
