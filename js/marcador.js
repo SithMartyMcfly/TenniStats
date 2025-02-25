@@ -7,7 +7,7 @@ const juegosA = document.getElementById('juegosA');
 const juegosB = document.getElementById('juegosB');
 const setsA = document.getElementById('setsA');
 const setsB = document.getElementById('setsB');
-const marcadorJuegosA = document.getElementById('marcadorJuegosA');
+const marcadorJuegosA = document.getElementById('marcadorJuegosA');0
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 
 
@@ -37,16 +37,15 @@ function actualizarServicio (){
         }
     } else {
         if (contadorPuntosTotalesTieBreak === 0){
-                 //cambio del primer punto del tiebreak
-        } else if ((contadorPuntosTotalesTieBreak-1) % 2 === 0){
-                servicioA.style.visibility= "hidden";
-                servicioB.style.visibility= "visible";
-            
+            servicioB.style.visibility = "hidden";
+            servicioA.style.visibility = "visible";
+        } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2) {
+            servicioA.style.visibility = "hidden";
+            servicioB.style.visibility = "visible";
         } else {
-            servicioB.style.visibility= "hidden";
-            servicioA.style.visibility= "visible";
+            servicioB.style.visibility = "hidden";
+            servicioA.style.visibility = "visible";
         }
-
     }
 }
 
