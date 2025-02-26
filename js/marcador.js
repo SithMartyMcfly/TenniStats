@@ -7,7 +7,7 @@ const juegosA = document.getElementById('juegosA');
 const juegosB = document.getElementById('juegosB');
 const setsA = document.getElementById('setsA');
 const setsB = document.getElementById('setsB');
-const marcadorJuegosA = document.getElementById('marcadorJuegosA');
+const marcadorJuegosA = document.getElementById('marcadorJuegosA');0
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 
 
@@ -22,33 +22,6 @@ let contadorSetsA = 0;
 let contadorSetsB = 0;
 let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
 let numeroSets = 2;
-
-
-function actualizarServicio (){
-    let servicioA = document.getElementsByTagName('div')[1];
-    let servicioB = document.getElementsByTagName('div')[4];
-    if(!enTieBreak){
-        if ((contadorJuegosTotales)%2 !=0){
-            servicioA.style.visibility= "hidden";
-            servicioB.style.visibility= "visible";
-        } else {
-            servicioB.style.visibility= "hidden";
-            servicioA.style.visibility= "visible";
-        }
-    } else {
-        if (contadorPuntosTotalesTieBreak === 0){
-                 //cambio del primer punto del tiebreak
-        } else if ((contadorPuntosTotalesTieBreak-1) % 2 === 0){
-                servicioA.style.visibility= "hidden";
-                servicioB.style.visibility= "visible";
-            
-        } else {
-            servicioB.style.visibility= "hidden";
-            servicioA.style.visibility= "visible";
-        }
-
-    }
-}
 
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetA() {
