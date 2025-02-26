@@ -12,7 +12,7 @@ const juegosA = document.getElementById('juegosA');
 const juegosB = document.getElementById('juegosB');
 const setsA = document.getElementById('setsA');
 const setsB = document.getElementById('setsB');
-const marcadorJuegosA = document.getElementById('marcadorJuegosA');
+const marcadorJuegosA = document.getElementById('marcadorJuegosA');0
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 
 
