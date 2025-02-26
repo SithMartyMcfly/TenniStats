@@ -1,7 +1,12 @@
 import Jugador from './Jugador.js';
 
+//dejar la instanciación con let cuando termine las pruebas
+
 let jugadorA = new Jugador();
 let jugadorB = new Jugador();
+
+console.log(jugadorA);
+console.log(jugadorB);
 
 
 
@@ -12,7 +17,7 @@ const juegosA = document.getElementById('juegosA');
 const juegosB = document.getElementById('juegosB');
 const setsA = document.getElementById('setsA');
 const setsB = document.getElementById('setsB');
-const marcadorJuegosA = document.getElementById('marcadorJuegosA');0
+const marcadorJuegosA = document.getElementById('marcadorJuegosA');
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 
 
@@ -27,6 +32,8 @@ let contadorSetsA = 0;
 let contadorSetsB = 0;
 let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
 let numeroSets = 2;
+
+//FUNCIONES PARA MANEJAR EL RESULTADO
 
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetA() {
@@ -48,23 +55,34 @@ function actualizarServicio (){
     if(!enTieBreak){
         if ((contadorJuegosTotales)%2 !=0){
             servicioA.style.visibility= "hidden";
+            jugadorA.Servicio=false;
             servicioB.style.visibility= "visible";
+            jugadorB.Servicio=true;
         } else {
             servicioB.style.visibility= "hidden";
+            jugadorB.Servicio=false;
             servicioA.style.visibility= "visible";
+            jugadorA.Servicio=true;
         }
     } else {
         if (contadorPuntosTotalesTieBreak === 0){
             servicioB.style.visibility = "hidden";
+            jugadorB.Servicio=false;
             servicioA.style.visibility = "visible";
+            jugadorA.Servicio=true;
+
             //cambio del primer punto del tiebreak
         } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2){
                 servicioA.style.visibility= "hidden";
+                jugadorA.Servicio=false;
                 servicioB.style.visibility= "visible";
+                jugadorB.Servicio=true;
             
         } else {
             servicioB.style.visibility= "hidden";
+            jugadorB.Servicio=false;
             servicioA.style.visibility= "visible";
+            jugadorA.Servicio=true;
         }
 
     }
@@ -79,6 +97,12 @@ function actualizarServicio (){
             marcadorJuegosA.style.background='green';
             marcadorA.innerHTML = "0";
             marcadorB.innerHTML = "0";
+
+            //Stats calculadas
+            jugadorA.juegosTotalesResto(contadorJuegosTotales, jugadorB.juegosServicio);
+            jugadorB.juegosTotalesResto(contadorJuegosTotales, jugadorA.juegosServicio);
+            jugadorA.juegosJugados = contadorJuegosTotales;
+            jugadorB.juegosJugados = contadorJuegosTotales;
             
         }
 
@@ -92,6 +116,8 @@ function actualizarServicio (){
         }
     }
 
+//FUNCIONES PARA MANEJAR ESTADÍSTICAS
+
 //RESULTADOS DE JUEGOS
 //LLeva el resultado de los Juegos A
 function resultadoA() {
@@ -102,6 +128,10 @@ function resultadoA() {
         contadorA++;
         //puntos que gana el jugador A
         jugadorA.puntosGanados++;
+        jugadorA.contadorBreaksAfrontados(jugadorA.Servicio, contadorA, contadorB);
+        jugadorB.contadorBreaksAfrontados(jugadorB.Servicio, contadorB, contadorA);
+        jugadorA.contadorBreaksJugados(jugadorA.Servicio, contadorA, contadorB);
+        jugadorB.contadorBreaksJugados(jugadorB.Servicio, contadorB, contadorA);
         if (contadorA > 3 && contadorA === contadorB) {
             resultado = "40";
             marcadorA.innerHTML = "40";
@@ -144,11 +174,17 @@ marcadorA.addEventListener('click', resultadoA);
 //LLeva el resultado de los Juegos B
 function resultadoB() {
     activarTieBreak();
-   
     if (!enTieBreak) {
         let resultado;
         contadorB++;
         jugadorB.puntosGanados++;
+        /*hay que llamar aqui tambien los afrontados del jugador contrario ya que cuando sumamos
+        break points en ventaja, este se produce clicando en el marcador del jugadorB, igual haremos
+        con las estadísticas de B*/
+        jugadorA.contadorBreaksAfrontados(jugadorA.Servicio, contadorA, contadorB);
+        jugadorB.contadorBreaksAfrontados(jugadorB.Servicio, contadorB, contadorA);
+        jugadorA.contadorBreaksJugados(jugadorA.Servicio, contadorA, contadorB);
+        jugadorB.contadorBreaksJugados(jugadorB.Servicio, contadorB, contadorA);
         if (contadorB > 3 && contadorB === contadorA) {
             resultado = "40";
             marcadorA.innerHTML = "40";
@@ -199,7 +235,15 @@ function resultadoJuegosA() {
             contadorB = 0;
             marcadorA.innerHTML = "0";
             marcadorB.innerHTML = "0";
+            //condición para sumar puntos de break jugadorA
+            if (jugadorA.Servicio===false){
+                jugadorA.puntosBreakGanados++;
+            }
+            jugadorA.contadorServicios(jugadorA.Servicio);
+            jugadorB.contadorServicios(jugadorB.Servicio);
+
         }
+       
         juegosA.innerHTML = contadorJuegosA;
         setsTotalesA();
     } else {
@@ -227,6 +271,13 @@ function resultadoJuegosB() {
             contadorA = 0;
             marcadorA.innerHTML = "0";
             marcadorB.innerHTML = "0";
+            //condición para sumar puntos de break jugadorB
+            if (jugadorB.Servicio===false){
+                jugadorB.puntosBreakGanados++;
+            }
+            jugadorB.contadorServicios(jugadorB.Servicio);
+            jugadorA.contadorServicios(jugadorA.Servicio);
+            
         }
         juegosB.innerHTML = contadorJuegosB;
         setsTotalesB();
@@ -336,8 +387,6 @@ function setsTotalesB() {
             juegosB.innerHTML = "0";
             enTieBreak = false;
         }
-    }
-   
-
-   
+    }  
 }
+
