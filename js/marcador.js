@@ -1,3 +1,8 @@
+import Jugador from './Jugador.js';
+
+let jugadorA = new Jugador();
+let jugadorB = new Jugador();
+
 
 
 //MANEJO DEL DOM
@@ -7,7 +12,7 @@ const juegosA = document.getElementById('juegosA');
 const juegosB = document.getElementById('juegosB');
 const setsA = document.getElementById('setsA');
 const setsB = document.getElementById('setsB');
-const marcadorJuegosA = document.getElementById('marcadorJuegosA');0
+const marcadorJuegosA = document.getElementById('marcadorJuegosA');
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 
 
@@ -35,6 +40,34 @@ function ganadorSetB() {
 //función que activa la puntuación especial de tieBreak
 function activarTieBreak() {
     enTieBreak = contadorJuegosA === 3 && contadorJuegosB === 3;
+}
+
+function actualizarServicio (){
+    let servicioA = document.getElementsByTagName('div')[1];
+    let servicioB = document.getElementsByTagName('div')[4];
+    if(!enTieBreak){
+        if ((contadorJuegosTotales)%2 !=0){
+            servicioA.style.visibility= "hidden";
+            servicioB.style.visibility= "visible";
+        } else {
+            servicioB.style.visibility= "hidden";
+            servicioA.style.visibility= "visible";
+        }
+    } else {
+        if (contadorPuntosTotalesTieBreak === 0){
+            servicioB.style.visibility = "hidden";
+            servicioA.style.visibility = "visible";
+            //cambio del primer punto del tiebreak
+        } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2){
+                servicioA.style.visibility= "hidden";
+                servicioB.style.visibility= "visible";
+            
+        } else {
+            servicioB.style.visibility= "hidden";
+            servicioA.style.visibility= "visible";
+        }
+
+    }
 }
 
 //función que dirime quien ha ganado el partido
@@ -67,6 +100,8 @@ function resultadoA() {
     if (!enTieBreak) {
         let resultado;
         contadorA++;
+        //puntos que gana el jugador A
+        jugadorA.puntosGanados++;
         if (contadorA > 3 && contadorA === contadorB) {
             resultado = "40";
             marcadorA.innerHTML = "40";
@@ -113,6 +148,7 @@ function resultadoB() {
     if (!enTieBreak) {
         let resultado;
         contadorB++;
+        jugadorB.puntosGanados++;
         if (contadorB > 3 && contadorB === contadorA) {
             resultado = "40";
             marcadorA.innerHTML = "40";
