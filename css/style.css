@@ -1,12 +1,12 @@
 *{
     padding: 0;
-    margin: 1%;
     box-sizing: border-box;
 }
 
 body{
     background-color: green;
     color: white;
+    margin: 1%;
 }
 
 #marcadorJuegos {
@@ -52,5 +52,66 @@ table{
     align-items: center;
 }
 
+.modal-finPunto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-finPunto-show{
+    opacity: 1;
+    pointer-events: unset;
+
+}
+
+.modal-container{
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5%;
+    place-items: center;
+}
+
+.modal-titulo{
+    color: black;
+    margin-bottom: 5%;
+}
+
+.modal-finPuntob{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-finPunto-showb{
+    opacity: 1;
+    pointer-events: unset;
+
+}
+
+.modal-containerb{
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5%;
+    place-items: center;
+}
+
+.modal-titulob{
+    color: black;
+    margin-bottom: 5%;
+}
 
 

@@ -19,6 +19,10 @@ const setsA = document.getElementById('setsA');
 const setsB = document.getElementById('setsB');
 const marcadorJuegosA = document.getElementById('marcadorJuegosA');
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
+const modalfinPunto = document.querySelector('.modal-finPunto');
+const cerrarModal = document.querySelectorAll('.modal-finPunto .btn');
+const modalfinPuntoB= document.querySelector('.modal-finPuntob');
+const cerrarModalB = document.querySelectorAll('.modal-finPuntob .btnb');
 
 
 //VARIABLES GLOBALES
@@ -37,92 +41,95 @@ let numeroSets = 2;
 
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetA() {
-    marcadorJuegosA.lastElementChild.style.background='grey';
+    marcadorJuegosA.lastElementChild.style.background = 'grey';
 }
 //función para colorear de verde cuando gana el jugador A
 function ganadorSetB() {
-    marcadorJuegosB.lastElementChild.style.background='grey';
-    marcadorJuegosB.lastElementChild.style.background='grey';
+    marcadorJuegosB.lastElementChild.style.background = 'grey';
+    marcadorJuegosB.lastElementChild.style.background = 'grey';
 }
 //función que activa la puntuación especial de tieBreak
 function activarTieBreak() {
     enTieBreak = contadorJuegosA === 3 && contadorJuegosB === 3;
 }
 
-function actualizarServicio (){
+function actualizarServicio() {
     let servicioA = document.getElementsByTagName('div')[1];
     let servicioB = document.getElementsByTagName('div')[4];
-    if(!enTieBreak){
-        if ((contadorJuegosTotales)%2 !=0){
-            servicioA.style.visibility= "hidden";
-            jugadorA.Servicio=false;
-            servicioB.style.visibility= "visible";
-            jugadorB.Servicio=true;
+    if (!enTieBreak) {
+        if ((contadorJuegosTotales) % 2 != 0) {
+            servicioA.style.visibility = "hidden";
+            jugadorA.Servicio = false;
+            servicioB.style.visibility = "visible";
+            jugadorB.Servicio = true;
         } else {
-            servicioB.style.visibility= "hidden";
-            jugadorB.Servicio=false;
-            servicioA.style.visibility= "visible";
-            jugadorA.Servicio=true;
+            servicioB.style.visibility = "hidden";
+            jugadorB.Servicio = false;
+            servicioA.style.visibility = "visible";
+            jugadorA.Servicio = true;
         }
     } else {
-        if (contadorPuntosTotalesTieBreak === 0){
+        if (contadorPuntosTotalesTieBreak === 0) {
             servicioB.style.visibility = "hidden";
-            jugadorB.Servicio=false;
+            jugadorB.Servicio = false;
             servicioA.style.visibility = "visible";
-            jugadorA.Servicio=true;
+            jugadorA.Servicio = true;
 
             //cambio del primer punto del tiebreak
-        } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2){
-                servicioA.style.visibility= "hidden";
-                jugadorA.Servicio=false;
-                servicioB.style.visibility= "visible";
-                jugadorB.Servicio=true;
-            
+        } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2) {
+            servicioA.style.visibility = "hidden";
+            jugadorA.Servicio = false;
+            servicioB.style.visibility = "visible";
+            jugadorB.Servicio = true;
+
         } else {
-            servicioB.style.visibility= "hidden";
-            jugadorB.Servicio=false;
-            servicioA.style.visibility= "visible";
-            jugadorA.Servicio=true;
+            servicioB.style.visibility = "hidden";
+            jugadorB.Servicio = false;
+            servicioA.style.visibility = "visible";
+            jugadorA.Servicio = true;
         }
 
     }
 }
 
 //función que dirime quien ha ganado el partido
- function ganadorPartido () {
-        if(contadorSetsA===numeroSets){
-            console.log('Gana jugador A')
-            marcadorA.removeEventListener('click', resultadoA);
-            marcadorB.removeEventListener('click', resultadoB);
-            marcadorJuegosA.style.background='green';
-            marcadorA.innerHTML = "0";
-            marcadorB.innerHTML = "0";
+function ganadorPartido() {
+    if (contadorSetsA === numeroSets) {
+        console.log('Gana jugador A')
+        marcadorA.removeEventListener('click', resultadoA);
+        marcadorB.removeEventListener('click', resultadoB);
+        marcadorJuegosA.style.background = 'green';
+        marcadorA.innerHTML = "0";
+        marcadorB.innerHTML = "0";
 
-            //Stats calculadas
-            jugadorA.juegosTotalesResto(contadorJuegosTotales, jugadorB.juegosServicio);
-            jugadorB.juegosTotalesResto(contadorJuegosTotales, jugadorA.juegosServicio);
-            jugadorA.juegosJugados = contadorJuegosTotales;
-            jugadorB.juegosJugados = contadorJuegosTotales;
-            
-        }
+        //Stats calculadas
+        jugadorA.juegosTotalesResto(contadorJuegosTotales, jugadorB.juegosServicio);
+        jugadorB.juegosTotalesResto(contadorJuegosTotales, jugadorA.juegosServicio);
+        jugadorA.juegosJugados = contadorJuegosTotales;
+        jugadorB.juegosJugados = contadorJuegosTotales;
 
-        if (contadorSetsB===numeroSets){
-            console.log('Gana jugador B');
-            marcadorA.removeEventListener('click', resultadoA);
-            marcadorB.removeEventListener('click', resultadoB);
-            marcadorA.innerHTML = "0";
-            marcadorB.innerHTML = "0";
-            marcadorJuegosB.style.background='green';
-        }
     }
+
+    if (contadorSetsB === numeroSets) {
+        console.log('Gana jugador B');
+        marcadorA.removeEventListener('click', resultadoA);
+        marcadorB.removeEventListener('click', resultadoB);
+        marcadorA.innerHTML = "0";
+        marcadorB.innerHTML = "0";
+        marcadorJuegosB.style.background = 'green';
+    }
+}
 
 //FUNCIONES PARA MANEJAR ESTADÍSTICAS
 
 //RESULTADOS DE JUEGOS
 //LLeva el resultado de los Juegos A
 function resultadoA() {
+    mostrarModalA(); 
+}
+
+function actualizarMarcadorA(){
     activarTieBreak();
-    
     if (!enTieBreak) {
         let resultado;
         contadorA++;
@@ -167,12 +174,13 @@ function resultadoA() {
     actualizarServicio();
 }
 
-marcadorA.addEventListener('click', resultadoA);
-
-
 
 //LLeva el resultado de los Juegos B
 function resultadoB() {
+    mostrarModalB();
+}
+
+function actualizarMarcadorB(){
     activarTieBreak();
     if (!enTieBreak) {
         let resultado;
@@ -219,7 +227,88 @@ function resultadoB() {
     actualizarServicio();
 }
 
+
+    //MODAL JUGADOR A
+    marcadorA.addEventListener('click', resultadoA);
+
+    function mostrarModalA(){
+        modalfinPunto.classList.add('modal-finPunto-show')
+        if (jugadorA.Servicio === false){
+            //botones que quitamos cuando el jugador gana al resto
+            document.querySelector('.ace').style.display = 'none';
+            document.querySelector('.df').style.display ='inline-block';
+        } else {
+            document.querySelector('.df').style.display ='none';
+            document.querySelector('.ace').style.display = 'inline-block';
+        }
+    }
+    
+    cerrarModal.forEach(boton => {
+        boton.addEventListener('click', (event) => {
+            event.preventDefault();
+            //capturamos con el switch case la clase del botón donde pulsamos
+            switch (true) {
+                case event.target.classList.contains ('ace'):
+                    jugadorA.incremantaAce();
+                    break;
+                case event.target.classList.contains('df'):
+                    jugadorB.incrementarDobleFalta();
+                    break;
+                case event.target.classList.contains('winner'):
+                    jugadorA.incrementaWinner();
+                    break;
+                case event.target.classList.contains ('error'):
+                    jugadorB.incrementarError();
+                    break;
+                default:
+                    break;
+            }
+            actualizarMarcadorA();
+            modalfinPunto.classList.remove('modal-finPunto-show');
+        });
+    });
+
+
+
+//MODAL JUGADOR B
 marcadorB.addEventListener('click', resultadoB);
+
+function mostrarModalB(){
+    modalfinPuntoB.classList.add('modal-finPunto-showb')
+    if (jugadorB.Servicio === false){
+        //botones que quitamos cuando el jugador gana al resto
+        document.querySelector('.aceb').style.display = 'none';
+        document.querySelector('.dfb').style.display ='inline-block';
+    } else {
+        document.querySelector('.dfb').style.display ='none';
+        document.querySelector('.aceb').style.display = 'inline-block';
+    }
+}
+
+cerrarModalB.forEach(boton => {
+    boton.addEventListener('click', (event) => {
+        event.preventDefault();
+        //capturamos con el switch case la clase del botón donde pulsamos
+        switch (true) {
+            case event.target.classList.contains ('aceb'):
+                jugadorB.incremantaAce();
+                break;
+            case event.target.classList.contains('dfb'):
+                jugadorA.incrementarDobleFalta();
+                break;
+            case event.target.classList.contains('winnerb'):
+                jugadorB.incrementaWinner();
+                break;
+            case event.target.classList.contains ('errorb'):
+                jugadorA.incrementarError();
+                break;
+            default:
+                break;
+        }
+        actualizarMarcadorB();
+        modalfinPuntoB.classList.remove('modal-finPunto-showb');
+    });
+});
 
 
 
@@ -236,14 +325,14 @@ function resultadoJuegosA() {
             marcadorA.innerHTML = "0";
             marcadorB.innerHTML = "0";
             //condición para sumar puntos de break jugadorA
-            if (jugadorA.Servicio===false){
+            if (jugadorA.Servicio === false) {
                 jugadorA.puntosBreakGanados++;
             }
             jugadorA.contadorServicios(jugadorA.Servicio);
             jugadorB.contadorServicios(jugadorB.Servicio);
 
         }
-       
+
         juegosA.innerHTML = contadorJuegosA;
         setsTotalesA();
     } else {
@@ -272,12 +361,12 @@ function resultadoJuegosB() {
             marcadorA.innerHTML = "0";
             marcadorB.innerHTML = "0";
             //condición para sumar puntos de break jugadorB
-            if (jugadorB.Servicio===false){
+            if (jugadorB.Servicio === false) {
                 jugadorB.puntosBreakGanados++;
             }
             jugadorB.contadorServicios(jugadorB.Servicio);
             jugadorA.contadorServicios(jugadorA.Servicio);
-            
+
         }
         juegosB.innerHTML = contadorJuegosB;
         setsTotalesB();
@@ -300,7 +389,7 @@ function resultadoJuegosB() {
 //PUNTUACIÓN SETS
 //puntuación set jugador A
 function setsTotalesA() {
-    
+
     if (!enTieBreak) {
         if (contadorJuegosA >= 3 && contadorJuegosA > contadorJuegosB + 1) {
             contadorSetsA++;
@@ -347,26 +436,26 @@ function setsTotalesA() {
 
 //puntuación set jugador B
 function setsTotalesB() {
-    
+
     if (!enTieBreak) {
         if (contadorJuegosB >= 3 && contadorJuegosB > contadorJuegosA + 1) {
             contadorSetsB++;
-            
+
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
                 <td>${contadorJuegosA}</td>
                 `);
-                marcadorJuegosB.insertAdjacentHTML("beforeend",
-                    `
+            marcadorJuegosB.insertAdjacentHTML("beforeend",
+                `
                     <td>${contadorJuegosB}</td>
                     `
-                )
-                ganadorSetB();
-                contadorJuegosB = 0;
-                contadorJuegosA = 0;
-                juegosA.innerHTML = "0";
-                juegosB.innerHTML = "0";
-            }
+            )
+            ganadorSetB();
+            contadorJuegosB = 0;
+            contadorJuegosA = 0;
+            juegosA.innerHTML = "0";
+            juegosB.innerHTML = "0";
+        }
         setsB.innerHTML = contadorSetsB;
     } else {
         if (contadorJuegosB > contadorJuegosA) {
@@ -387,6 +476,10 @@ function setsTotalesB() {
             juegosB.innerHTML = "0";
             enTieBreak = false;
         }
-    }  
+    }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarServicio();
+});
 
