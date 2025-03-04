@@ -23,6 +23,14 @@ const modalfinPunto = document.querySelector('.modal-finPunto');
 const cerrarModal = document.querySelectorAll('.modal-finPunto .btn');
 const modalfinPuntoB= document.querySelector('.modal-finPuntob');
 const cerrarModalB = document.querySelectorAll('.modal-finPuntob .btnb');
+const botonesServicioA = document.querySelectorAll('.botones-servicio');
+const botonesServicioB = document.querySelectorAll('.botones-serviciob');
+const primerServicioA = document.getElementById('primerServicioA');
+const segundoServicioA = document.getElementById('segundoServicioA');
+const segundoServicioB = document.getElementById('segundoServicioB');
+const primerServicioB = document.getElementById('primerServicioB');
+
+
 
 
 //VARIABLES GLOBALES
@@ -51,6 +59,9 @@ function ganadorSetB() {
 //función que activa la puntuación especial de tieBreak
 function activarTieBreak() {
     enTieBreak = contadorJuegosA === 3 && contadorJuegosB === 3;
+    //stat de TB jugados por ambos jugadores
+    jugadorA.tieBreaksJugados++;
+    jugadorB.tieBreaksJugados++;
 }
 
 function actualizarServicio() {
@@ -58,34 +69,65 @@ function actualizarServicio() {
     let servicioB = document.getElementsByTagName('div')[4];
     if (!enTieBreak) {
         if ((contadorJuegosTotales) % 2 != 0) {
-            servicioA.style.visibility = "hidden";
-            jugadorA.Servicio = false;
-            servicioB.style.visibility = "visible";
+            servicioA.style.visibility="hidden";
+            botonesServicioA.forEach(
+                boton => boton.style.visibility="hidden"
+            );
             jugadorB.Servicio = true;
+            servicioB.style.visibility="visible";
+            botonesServicioB.forEach(
+                boton => boton.style.visibility="visible"
+            );
+            jugadorA.Servicio = false;
         } else {
-            servicioB.style.visibility = "hidden";
+            servicioB.style.visibility="hidden";
+            botonesServicioB.forEach(
+                boton => boton.style.visibility="hidden"
+            );
             jugadorB.Servicio = false;
-            servicioA.style.visibility = "visible";
+            servicioA.style.visibility="visible";
+            botonesServicioA.forEach(
+                boton => boton.style.visibility="visible"
+            );
             jugadorA.Servicio = true;
         }
     } else {
         if (contadorPuntosTotalesTieBreak === 0) {
-            servicioB.style.visibility = "hidden";
+            servicioB.style.visibility="hidden";
+            botonesServicioB.forEach(
+                boton => boton.style.visibility="hidden"
+            );
             jugadorB.Servicio = false;
-            servicioA.style.visibility = "visible";
+            servicioA.style.visibility="visible";
+            botonesServicioA.forEach(
+                boton => boton.style.visibility="visible"
+            );
             jugadorA.Servicio = true;
 
             //cambio del primer punto del tiebreak
         } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2) {
-            servicioA.style.visibility = "hidden";
+            servicioA.style.visibility="hidden";
+            botonesServicioA.forEach(
+                boton => boton.style.visibility="hidden"
+            );
             jugadorA.Servicio = false;
-            servicioB.style.visibility = "visible";
+            servicioB.style.visibility="visible";
+            botonesServicioB.forEach(
+                boton => boton.style.visibility="visible"
+            );
             jugadorB.Servicio = true;
+            
 
         } else {
-            servicioB.style.visibility = "hidden";
+            servicioB.style.visibility="hidden";
+            botonesServicioB.forEach(
+                boton => boton.style.visibility="hidden"
+            );
             jugadorB.Servicio = false;
-            servicioA.style.visibility = "visible";
+            servicioA.style.visibility="visible";
+            botonesServicioA.forEach(
+                boton => boton.style.visibility="visible"
+            );
             jugadorA.Servicio = true;
         }
 
@@ -95,6 +137,7 @@ function actualizarServicio() {
 //función que dirime quien ha ganado el partido
 function ganadorPartido() {
     if (contadorSetsA === numeroSets) {
+        jugadorA.partidoGanado++;
         console.log('Gana jugador A')
         marcadorA.removeEventListener('click', resultadoA);
         marcadorB.removeEventListener('click', resultadoB);
@@ -109,8 +152,8 @@ function ganadorPartido() {
         jugadorB.juegosJugados = contadorJuegosTotales;
 
     }
-
     if (contadorSetsB === numeroSets) {
+        jugadorB.partidoGanado++;
         console.log('Gana jugador B');
         marcadorA.removeEventListener('click', resultadoA);
         marcadorB.removeEventListener('click', resultadoB);
@@ -124,6 +167,36 @@ function ganadorPartido() {
 
 //RESULTADOS DE JUEGOS
 //LLeva el resultado de los Juegos A
+const puntajeA = marcadorA.addEventListener('click', resultadoA 
+);    
+const puntajeB = marcadorB.addEventListener('click', resultadoB);
+
+primerServicioA.addEventListener('click', ()=>{
+    jugadorA.incremantaPrimerServicio();
+    puntajeA;
+    primerServicioA.disabled = true;
+    segundoServicioA.disabled = true;
+});
+segundoServicioA.addEventListener('click', ()=>{
+    jugadorA.incremantaSegundoServicio();
+    puntajeA;
+    primerServicioA.disabled = true;
+    segundoServicioA.disabled = true;
+});
+primerServicioB.addEventListener('click', ()=>{
+    jugadorB.incremantaPrimerServicio();
+    puntajeB;
+    primerServicioB.disabled = true;
+    segundoServicioB.disabled = true;
+});
+segundoServicioB.addEventListener('click', ()=>{
+    jugadorB.incremantaSegundoServicio()
+    marcadorB.addEventListener('click', resultadoB);
+    puntajeB;
+    primerServicioB.disabled = true;
+    segundoServicioB.disabled = true;
+});
+
 function resultadoA() {
     mostrarModalA(); 
 }
@@ -229,7 +302,7 @@ function actualizarMarcadorB(){
 
 
     //MODAL JUGADOR A
-    marcadorA.addEventListener('click', resultadoA);
+    
 
     function mostrarModalA(){
         modalfinPunto.classList.add('modal-finPunto-show')
@@ -263,6 +336,8 @@ function actualizarMarcadorB(){
                 default:
                     break;
             }
+            primerServicioA.disabled = false;
+            segundoServicioA.disabled = false;
             actualizarMarcadorA();
             modalfinPunto.classList.remove('modal-finPunto-show');
         });
@@ -271,7 +346,7 @@ function actualizarMarcadorB(){
 
 
 //MODAL JUGADOR B
-marcadorB.addEventListener('click', resultadoB);
+
 
 function mostrarModalB(){
     modalfinPuntoB.classList.add('modal-finPunto-showb')
@@ -305,6 +380,8 @@ cerrarModalB.forEach(boton => {
             default:
                 break;
         }
+        primerServicioB.disabled = false;
+        segundoServicioB.disabled = false;
         actualizarMarcadorB();
         modalfinPuntoB.classList.remove('modal-finPunto-showb');
     });
@@ -330,7 +407,6 @@ function resultadoJuegosA() {
             }
             jugadorA.contadorServicios(jugadorA.Servicio);
             jugadorB.contadorServicios(jugadorB.Servicio);
-
         }
 
         juegosA.innerHTML = contadorJuegosA;
@@ -338,7 +414,9 @@ function resultadoJuegosA() {
     } else {
         if (contadorA >= 7 && contadorA > contadorB + 1) {
             contadorJuegosA++;
+            jugadorA.tieBreaksGanados++; //stat tiebreak
             contadorJuegosTotales++;
+            jugadorA.juegosJugados++; //stat juegos jugados
             contadorA = 0;
             contadorB = 0;
             marcadorA.innerHTML = "0";
@@ -373,7 +451,9 @@ function resultadoJuegosB() {
     } else {
         if (contadorB >= 7 && contadorB > contadorA + 1) {
             contadorJuegosB++;
+            jugadorB.tieBreaksGanados++;
             contadorJuegosTotales++;
+            //stats de ambos jugadores de TB jugados
             contadorB = 0;
             contadorA = 0;
             marcadorA.innerHTML = "0";
@@ -393,6 +473,7 @@ function setsTotalesA() {
     if (!enTieBreak) {
         if (contadorJuegosA >= 3 && contadorJuegosA > contadorJuegosB + 1) {
             contadorSetsA++;
+            jugadorA.setGanados++; //stat set ganados jugador A
 
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
@@ -414,6 +495,7 @@ function setsTotalesA() {
     } else {
         if (contadorJuegosA > contadorJuegosB) {
             contadorSetsA++;
+            jugadorA.setGanados++; //stat set ganados jugador A
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
             <td>${contadorJuegosA}</td>
@@ -440,7 +522,7 @@ function setsTotalesB() {
     if (!enTieBreak) {
         if (contadorJuegosB >= 3 && contadorJuegosB > contadorJuegosA + 1) {
             contadorSetsB++;
-
+            jugadorB.setGanados++ //stat set ganados jugador B
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
                 <td>${contadorJuegosA}</td>
@@ -460,6 +542,7 @@ function setsTotalesB() {
     } else {
         if (contadorJuegosB > contadorJuegosA) {
             contadorSetsB++;
+            jugadorB.setGanados++ //stat jugador B sets ganados
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
                  <td>${contadorJuegosA}</td>
@@ -479,7 +562,7 @@ function setsTotalesB() {
     }
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
     actualizarServicio();
 });
-

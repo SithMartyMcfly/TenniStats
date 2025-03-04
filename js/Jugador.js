@@ -1,8 +1,9 @@
 
 class Jugador {
     constructor() {
-        
         this.Servicio; //atributo para controlar quien saca
+        this.primerServicio = 0;//jugador juega con primer servicio
+        this.segundoServicio = 0; //jugador juega con segundo servicio
         this.puntosGanados = 0; //puntos totales que ha ganado el jugador
         this.aces=0; //puntos directos de servicio
         this.dobleFalta=0; //cuando el jugador al servicio no consigue meter ninguno de los dos servicios
@@ -11,11 +12,14 @@ class Jugador {
         this.puntosBreakAfrontados=0; //cuando yo saco y tengo que defender mi servicio
         this.puntosBreakJugados=0; // cuando yo tengo opción de romper el servicio de mi rival
         this.puntosBreakGanados=0; // cuando consigo romper el servicio de mi rival
-        this.juegosServicio=0; //juegos en los que el jugador ha restado
+        this.juegosServicio=0; //juegos en los que el jugador ha servido
         this.juegosResto=0; //calculada en marcador.js
-        this.juegosJugados=0; // calculada en marcador.js
-        this.setJugados=0; 
-        this.tieBreaksJugados=0
+        this.juegosJugados=0; // calculada en marcador.js (calculado en los juegos ganados de cada uno)
+        this.setGanados=0; //sets que ha jugado el jugador
+        this.tieBreaksJugados = 0; //calculada en marcador.js (suma tiebreaks ganados de ambos jugadores)
+        this.tieBreaksGanados = 0; //tiebreaks que ha ganado el jugador
+        this.partidoGanado = 0; //partidos que haganado jugador
+        this.partidosJugados= 0; //partidos jugados
         
     }
     contadorBreaksAfrontados(servicio, puntosJugadorA, puntosJugadorB) {
@@ -49,6 +53,18 @@ class Jugador {
     }
     incrementaWinner (){
         this.winners++;
+    }
+    incremantaPrimerServicio (){
+        this.primerServicio++;
+    }
+    incremantaSegundoServicio (){
+        this.segundoServicio++;
+    }
+    incrementaSetsGanados (){
+        this.setGanados++;
+    }
+    incrementaTieBreaksGanados (){
+        this.tieBreaksGanados++
     }
     
 }
