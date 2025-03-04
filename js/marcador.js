@@ -137,6 +137,7 @@ function actualizarServicio() {
 //función que dirime quien ha ganado el partido
 function ganadorPartido() {
     if (contadorSetsA === numeroSets) {
+        //stat partido ganado jugador A
         jugadorA.partidoGanado++;
         console.log('Gana jugador A')
         marcadorA.removeEventListener('click', resultadoA);
@@ -153,6 +154,7 @@ function ganadorPartido() {
 
     }
     if (contadorSetsB === numeroSets) {
+        //stat partido ganado jugador B
         jugadorB.partidoGanado++;
         console.log('Gana jugador B');
         marcadorA.removeEventListener('click', resultadoA);
@@ -163,10 +165,8 @@ function ganadorPartido() {
     }
 }
 
-//FUNCIONES PARA MANEJAR ESTADÍSTICAS
-
-//RESULTADOS DE JUEGOS
-//LLeva el resultado de los Juegos A
+//MANEJADORES DE EVENTOS
+//usamos para poder deshabilitar opciones y poder llevar orden en el marcador
 const puntajeA = marcadorA.addEventListener('click', resultadoA 
 );    
 const puntajeB = marcadorB.addEventListener('click', resultadoB);
@@ -197,6 +197,8 @@ segundoServicioB.addEventListener('click', ()=>{
     segundoServicioB.disabled = true;
 });
 
+
+//FUNCIONES PARA MANEJAR RESULTADO
 function resultadoA() {
     mostrarModalA(); 
 }
@@ -302,7 +304,6 @@ function actualizarMarcadorB(){
 
 
     //MODAL JUGADOR A
-    
 
     function mostrarModalA(){
         modalfinPunto.classList.add('modal-finPunto-show')
@@ -347,7 +348,6 @@ function actualizarMarcadorB(){
 
 //MODAL JUGADOR B
 
-
 function mostrarModalB(){
     modalfinPuntoB.classList.add('modal-finPunto-showb')
     if (jugadorB.Servicio === false){
@@ -388,9 +388,8 @@ cerrarModalB.forEach(boton => {
 });
 
 
-
-
 //Lleva la puntuación, del jugador A, en el set actual
+
 function resultadoJuegosA() {
     ganadorPartido();
     if (!enTieBreak) {
@@ -414,9 +413,9 @@ function resultadoJuegosA() {
     } else {
         if (contadorA >= 7 && contadorA > contadorB + 1) {
             contadorJuegosA++;
-            jugadorA.tieBreaksGanados++; //stat tiebreak
+            jugadorA.incrementaTieBreaksGanados(); //stat tiebreak
             contadorJuegosTotales++;
-            jugadorA.juegosJugados++; //stat juegos jugados
+            //jugadorA.juegosJugados++; //stat juegos jugados
             contadorA = 0;
             contadorB = 0;
             marcadorA.innerHTML = "0";
@@ -451,7 +450,7 @@ function resultadoJuegosB() {
     } else {
         if (contadorB >= 7 && contadorB > contadorA + 1) {
             contadorJuegosB++;
-            jugadorB.tieBreaksGanados++;
+            jugadorB.incrementaTieBreaksGanados();
             contadorJuegosTotales++;
             //stats de ambos jugadores de TB jugados
             contadorB = 0;
@@ -473,7 +472,7 @@ function setsTotalesA() {
     if (!enTieBreak) {
         if (contadorJuegosA >= 3 && contadorJuegosA > contadorJuegosB + 1) {
             contadorSetsA++;
-            jugadorA.setGanados++; //stat set ganados jugador A
+            jugadorA.incrementaSetsGanados(); //stat set ganados jugador A
 
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
@@ -495,7 +494,7 @@ function setsTotalesA() {
     } else {
         if (contadorJuegosA > contadorJuegosB) {
             contadorSetsA++;
-            jugadorA.setGanados++; //stat set ganados jugador A
+            jugadorA.incrementaSetsGanados(); //stat set ganados jugador A
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
             <td>${contadorJuegosA}</td>
@@ -522,7 +521,7 @@ function setsTotalesB() {
     if (!enTieBreak) {
         if (contadorJuegosB >= 3 && contadorJuegosB > contadorJuegosA + 1) {
             contadorSetsB++;
-            jugadorB.setGanados++ //stat set ganados jugador B
+            jugadorB.incrementaSetsGanados(); //stat set ganados jugador B
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
                 <td>${contadorJuegosA}</td>
@@ -542,7 +541,7 @@ function setsTotalesB() {
     } else {
         if (contadorJuegosB > contadorJuegosA) {
             contadorSetsB++;
-            jugadorB.setGanados++ //stat jugador B sets ganados
+            jugadorB.incrementaSetsGanados(); //stat jugador B sets ganados
             marcadorJuegosA.insertAdjacentHTML("beforeend",
                 `
                  <td>${contadorJuegosA}</td>
@@ -562,6 +561,11 @@ function setsTotalesB() {
     }
 }
 
+//ESTADISTICAS DERIVADAS
+jugadorA.juegosTotalesResto(contadorJuegosTotales, jugadorA.juegosServicio);
+jugadorB.juegosTotalesResto(contadorJuegosTotales, jugadorB.juegosServicio);
+jugadorA.juegosJugados = contadorJuegosTotales;
+jugadorB.juegosJugados = contadorJuegosTotales;
 
 document.addEventListener("DOMContentLoaded", () => {
     actualizarServicio();
