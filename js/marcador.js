@@ -21,7 +21,7 @@ const marcadorJuegosA = document.getElementById('marcadorJuegosA');
 const marcadorJuegosB = document.getElementById('marcadorJuegosB');
 const modalfinPunto = document.querySelector('.modal-finPunto');
 const cerrarModal = document.querySelectorAll('.modal-finPunto .btn');
-const modalfinPuntoB= document.querySelector('.modal-finPuntob');
+const modalfinPuntoB = document.querySelector('.modal-finPuntob');
 const cerrarModalB = document.querySelectorAll('.modal-finPuntob .btnb');
 const botonesServicioA = document.querySelectorAll('.botones-servicio');
 const botonesServicioB = document.querySelectorAll('.botones-serviciob');
@@ -69,64 +69,64 @@ function actualizarServicio() {
     let servicioB = document.getElementsByTagName('div')[4];
     if (!enTieBreak) {
         if ((contadorJuegosTotales) % 2 != 0) {
-            servicioA.style.visibility="hidden";
+            servicioA.style.visibility = "hidden";
             botonesServicioA.forEach(
-                boton => boton.style.visibility="hidden"
+                boton => boton.style.visibility = "hidden"
             );
             jugadorB.Servicio = true;
-            servicioB.style.visibility="visible";
+            servicioB.style.visibility = "visible";
             botonesServicioB.forEach(
-                boton => boton.style.visibility="visible"
+                boton => boton.style.visibility = "visible"
             );
             jugadorA.Servicio = false;
         } else {
-            servicioB.style.visibility="hidden";
+            servicioB.style.visibility = "hidden";
             botonesServicioB.forEach(
-                boton => boton.style.visibility="hidden"
+                boton => boton.style.visibility = "hidden"
             );
             jugadorB.Servicio = false;
-            servicioA.style.visibility="visible";
+            servicioA.style.visibility = "visible";
             botonesServicioA.forEach(
-                boton => boton.style.visibility="visible"
+                boton => boton.style.visibility = "visible"
             );
             jugadorA.Servicio = true;
         }
     } else {
         if (contadorPuntosTotalesTieBreak === 0) {
-            servicioB.style.visibility="hidden";
+            servicioB.style.visibility = "hidden";
             botonesServicioB.forEach(
-                boton => boton.style.visibility="hidden"
+                boton => boton.style.visibility = "hidden"
             );
             jugadorB.Servicio = false;
-            servicioA.style.visibility="visible";
+            servicioA.style.visibility = "visible";
             botonesServicioA.forEach(
-                boton => boton.style.visibility="visible"
+                boton => boton.style.visibility = "visible"
             );
             jugadorA.Servicio = true;
 
             //cambio del primer punto del tiebreak
         } else if ((contadorPuntosTotalesTieBreak - 1) % 4 < 2) {
-            servicioA.style.visibility="hidden";
+            servicioA.style.visibility = "hidden";
             botonesServicioA.forEach(
-                boton => boton.style.visibility="hidden"
+                boton => boton.style.visibility = "hidden"
             );
             jugadorA.Servicio = false;
-            servicioB.style.visibility="visible";
+            servicioB.style.visibility = "visible";
             botonesServicioB.forEach(
-                boton => boton.style.visibility="visible"
+                boton => boton.style.visibility = "visible"
             );
             jugadorB.Servicio = true;
-            
+
 
         } else {
-            servicioB.style.visibility="hidden";
+            servicioB.style.visibility = "hidden";
             botonesServicioB.forEach(
-                boton => boton.style.visibility="hidden"
+                boton => boton.style.visibility = "hidden"
             );
             jugadorB.Servicio = false;
-            servicioA.style.visibility="visible";
+            servicioA.style.visibility = "visible";
             botonesServicioA.forEach(
-                boton => boton.style.visibility="visible"
+                boton => boton.style.visibility = "visible"
             );
             jugadorA.Servicio = true;
         }
@@ -140,8 +140,6 @@ function ganadorPartido() {
         //stat partido ganado jugador A
         jugadorA.partidoGanado++;
         console.log('Gana jugador A')
-        marcadorA.removeEventListener('click', resultadoA);
-        marcadorB.removeEventListener('click', resultadoB);
         marcadorJuegosA.style.background = 'green';
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
@@ -157,8 +155,6 @@ function ganadorPartido() {
         //stat partido ganado jugador B
         jugadorB.partidoGanado++;
         console.log('Gana jugador B');
-        marcadorA.removeEventListener('click', resultadoA);
-        marcadorB.removeEventListener('click', resultadoB);
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
         marcadorJuegosB.style.background = 'green';
@@ -166,33 +162,41 @@ function ganadorPartido() {
 }
 
 //MANEJADORES DE EVENTOS
-//usamos para poder deshabilitar opciones y poder llevar orden en el marcador
-const puntajeA = marcadorA.addEventListener('click', resultadoA 
-);    
-const puntajeB = marcadorB.addEventListener('click', resultadoB);
 
-primerServicioA.addEventListener('click', ()=>{
+//usamos para poder deshabilitar opciones y poder llevar orden en el marcador
+function habilitarEventos() {
+    marcadorA.addEventListener('click', resultadoA);
+    marcadorB.addEventListener('click', resultadoB);
+}
+function deshabilitarEventos() {
+    marcadorA.removeEventListener('click', resultadoA);
+    marcadorB.removeEventListener('click', resultadoB);
+}
+
+deshabilitarEventos();
+
+primerServicioA.addEventListener('click', () => {
     jugadorA.incremantaPrimerServicio();
-    puntajeA;
+    habilitarEventos();
     primerServicioA.disabled = true;
     segundoServicioA.disabled = true;
 });
-segundoServicioA.addEventListener('click', ()=>{
+segundoServicioA.addEventListener('click', () => {
     jugadorA.incremantaSegundoServicio();
-    puntajeA;
+    habilitarEventos();
     primerServicioA.disabled = true;
     segundoServicioA.disabled = true;
 });
-primerServicioB.addEventListener('click', ()=>{
+primerServicioB.addEventListener('click', () => {
     jugadorB.incremantaPrimerServicio();
-    puntajeB;
+    habilitarEventos();
     primerServicioB.disabled = true;
     segundoServicioB.disabled = true;
 });
-segundoServicioB.addEventListener('click', ()=>{
+segundoServicioB.addEventListener('click', () => {
     jugadorB.incremantaSegundoServicio()
-    marcadorB.addEventListener('click', resultadoB);
-    puntajeB;
+    //marcadorB.addEventListener('click', resultadoB);
+    habilitarEventos();
     primerServicioB.disabled = true;
     segundoServicioB.disabled = true;
 });
@@ -200,10 +204,10 @@ segundoServicioB.addEventListener('click', ()=>{
 
 //FUNCIONES PARA MANEJAR RESULTADO
 function resultadoA() {
-    mostrarModalA(); 
+    mostrarModalA();
 }
 
-function actualizarMarcadorA(){
+function actualizarMarcadorA() {
     activarTieBreak();
     if (!enTieBreak) {
         let resultado;
@@ -255,7 +259,7 @@ function resultadoB() {
     mostrarModalB();
 }
 
-function actualizarMarcadorB(){
+function actualizarMarcadorB() {
     activarTieBreak();
     if (!enTieBreak) {
         let resultado;
@@ -303,59 +307,62 @@ function actualizarMarcadorB(){
 }
 
 
-    //MODAL JUGADOR A
+//MODAL JUGADOR A
 
-    function mostrarModalA(){
-        modalfinPunto.classList.add('modal-finPunto-show')
-        if (jugadorA.Servicio === false){
-            //botones que quitamos cuando el jugador gana al resto
-            document.querySelector('.ace').style.display = 'none';
-            document.querySelector('.df').style.display ='inline-block';
-        } else {
-            document.querySelector('.df').style.display ='none';
-            document.querySelector('.ace').style.display = 'inline-block';
-        }
+function mostrarModalA() {
+    modalfinPunto.classList.add('modal-finPunto-show')
+    if (jugadorA.Servicio === false) {
+        //botones que quitamos cuando el jugador gana al resto
+        document.querySelector('.ace').style.display = 'none';
+        document.querySelector('.df').style.display = 'inline-block';
+    } else {
+        document.querySelector('.df').style.display = 'none';
+        document.querySelector('.ace').style.display = 'inline-block';
     }
-    
-    cerrarModal.forEach(boton => {
-        boton.addEventListener('click', (event) => {
-            event.preventDefault();
-            //capturamos con el switch case la clase del botón donde pulsamos
-            switch (true) {
-                case event.target.classList.contains ('ace'):
-                    jugadorA.incremantaAce();
-                    break;
-                case event.target.classList.contains('df'):
-                    jugadorB.incrementarDobleFalta();
-                    break;
-                case event.target.classList.contains('winner'):
-                    jugadorA.incrementaWinner();
-                    break;
-                case event.target.classList.contains ('error'):
-                    jugadorB.incrementarError();
-                    break;
-                default:
-                    break;
-            }
-            primerServicioA.disabled = false;
-            segundoServicioA.disabled = false;
-            actualizarMarcadorA();
-            modalfinPunto.classList.remove('modal-finPunto-show');
-        });
+}
+
+cerrarModal.forEach(boton => {
+    boton.addEventListener('click', (event) => {
+        event.preventDefault();
+        //capturamos con el switch case la clase del botón donde pulsamos
+        switch (true) {
+            case event.target.classList.contains('ace'):
+                jugadorA.incremantaAce();
+                break;
+            case event.target.classList.contains('df'):
+                jugadorB.incrementarDobleFalta();
+                break;
+            case event.target.classList.contains('winner'):
+                jugadorA.incrementaWinner();
+                break;
+            case event.target.classList.contains('error'):
+                jugadorB.incrementarError();
+                break;
+            default:
+                break;
+        }
+        primerServicioA.disabled = false;
+        segundoServicioA.disabled = false;
+        primerServicioB.disabled = false;
+        segundoServicioB.disabled = false;
+        actualizarMarcadorA();
+        modalfinPunto.classList.remove('modal-finPunto-show');
+        deshabilitarEventos();
     });
+});
 
 
 
 //MODAL JUGADOR B
 
-function mostrarModalB(){
+function mostrarModalB() {
     modalfinPuntoB.classList.add('modal-finPunto-showb')
-    if (jugadorB.Servicio === false){
+    if (jugadorB.Servicio === false) {
         //botones que quitamos cuando el jugador gana al resto
         document.querySelector('.aceb').style.display = 'none';
-        document.querySelector('.dfb').style.display ='inline-block';
+        document.querySelector('.dfb').style.display = 'inline-block';
     } else {
-        document.querySelector('.dfb').style.display ='none';
+        document.querySelector('.dfb').style.display = 'none';
         document.querySelector('.aceb').style.display = 'inline-block';
     }
 }
@@ -365,7 +372,7 @@ cerrarModalB.forEach(boton => {
         event.preventDefault();
         //capturamos con el switch case la clase del botón donde pulsamos
         switch (true) {
-            case event.target.classList.contains ('aceb'):
+            case event.target.classList.contains('aceb'):
                 jugadorB.incremantaAce();
                 break;
             case event.target.classList.contains('dfb'):
@@ -374,7 +381,7 @@ cerrarModalB.forEach(boton => {
             case event.target.classList.contains('winnerb'):
                 jugadorB.incrementaWinner();
                 break;
-            case event.target.classList.contains ('errorb'):
+            case event.target.classList.contains('errorb'):
                 jugadorA.incrementarError();
                 break;
             default:
@@ -382,7 +389,10 @@ cerrarModalB.forEach(boton => {
         }
         primerServicioB.disabled = false;
         segundoServicioB.disabled = false;
+        primerServicioA.disabled = false;
+        segundoServicioA.disabled = false;
         actualizarMarcadorB();
+        deshabilitarEventos();
         modalfinPuntoB.classList.remove('modal-finPunto-showb');
     });
 });
