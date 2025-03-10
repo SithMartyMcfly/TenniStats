@@ -1,0 +1,15 @@
+/*tabla gestor de jugadores*/
+  td:hover {
+    background-color: lightseagreen;
+  }
+
+ .table {
+    text-align: center;
+    width: 70%;
+    margin: auto;
+  }
+
+  form{
+    text-align: center;
+    margin: auto;
+  }
