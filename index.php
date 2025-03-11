@@ -30,7 +30,7 @@ include 'header.php';
     </div>
     <div class="col text-center">
         <p class="text-secondary bg-white fw-bolder">Jugar Partido</p>
-        <a class="icon-link icon-link-hover" href="CRUDJugador/opcionesPartido"><img class="bg-white m-3 p-1 rounded-3" src="CRUDJugador/imagenesCRUD/corte.png" alt="inicioPartido" height="150" width="150"></a>
+        <a class="icon-link icon-link-hover" href="crearPartido/crearPartido.php"><img class="bg-white m-3 p-1 rounded-3" src="CRUDJugador/imagenesCRUD/corte.png" alt="inicioPartido" height="150" width="150"></a>
         
     </div>
 
