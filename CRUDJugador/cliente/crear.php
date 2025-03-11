@@ -14,13 +14,14 @@ $fechaNacimiento = $_POST['fechaNacimiento'];
 $categoria = $_POST['categoria'];
 $peso = $_POST['peso'];
 $altura = $_POST['altura'];
+$mano = $_POST['mano'];
 
 
 //sentencia sql
 $insertar = "
     INSERT INTO jugadores
-    (ficha_federativa, nombre, apellidos, fecha_nacimiento, categoria, peso, altura)
-    VALUES ('$fichaFederativa', '$nombre', '$apellidos', '$fechaNacimiento', '$categoria', $peso, $altura)
+    (ficha_federativa, nombre, apellidos, fecha_nacimiento, categoria, peso, altura, mano)
+    VALUES ('$fichaFederativa', '$nombre', '$apellidos', '$fechaNacimiento', '$categoria', $peso, $altura, '$mano')
 ";
 
 

@@ -21,6 +21,8 @@ $fechaNacimiento = $_POST['fechaNacimiento'];
 $categoria = $_POST['categoria'];
 $peso = $_POST['peso'];
 $altura = $_POST['altura'];
+$mano = $_POST['mano'];
+
 
 
 //sentencia sql
@@ -33,7 +35,8 @@ $actualizar = "
         fecha_nacimiento='$fechaNacimiento', 
         categoria='$categoria', 
         peso='$peso', 
-        altura='$altura'
+        altura='$altura',
+        mano = '$mano'
     WHERE ficha_federativa='$idmodificar'
 ";
 

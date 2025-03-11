@@ -24,7 +24,6 @@ include '../../header.php';
                 <div class="mb-5">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Fecha Nacimiento</label>
                     <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" required />
-
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Categoría</label>
@@ -39,11 +38,20 @@ include '../../header.php';
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Peso</label>
-                    <input type="number" class="form-control" name="peso" id="peso" step="0.01" required />
+                    <input type="number" class="form-control" name="peso" id="peso" step="0.05" min="0" required />
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Altura</label>
-                    <input type="number" class="form-control" name="altura" id="altura" step="0.01" required />
+                    <input type="number" class="form-control" name="altura" id="altura" step="0.05" min="0" required />
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label fw-semibold text-success-emphasis">Categoría</label>
+                    <select name="mano">
+                        <option value="diestro 1">Diestro, Una Mano Revés</option>
+                        <option value="diestro 2" selected>Diestro, Dos Manos Revés</option>
+                        <option value="zurdo 2">Zurdo, Dos Manos Revés</option>
+                        <option value="zurdo 1">Zurdo, Una Mano Revés</option>
+                    </select>
                 </div>
                 <div class="d-grid">
                     <input type="submit" value="Dar de Alta" class="btn btn-primary">

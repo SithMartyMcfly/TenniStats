@@ -19,7 +19,7 @@ $registros = mysqli_query($conexion, $consultar);
 ?>
 
 <div>
-    <table class="table table-hover">
+    <table class="table table-hover text-center">
         <thead>
             <tr>
                 <th>Ficha Federativa</th>
@@ -29,6 +29,7 @@ $registros = mysqli_query($conexion, $consultar);
                 <th>Categoría</th>
                 <th>Peso</th>
                 <th>Altura</th>
+                <th>Mano</th>
                 <th class="text-center">Modificar</th>
             </tr>
         </thead>
@@ -45,6 +46,22 @@ $registros = mysqli_query($conexion, $consultar);
                     <td><?php echo $registro['categoria']; ?></td>
                     <td><?php echo $registro['peso']; ?></td>
                     <td><?php echo $registro['altura']; ?></td>
+                    <td><?php
+                switch ($registro['mano']){
+                    case 'diestro 1':
+                        echo 'Diestro, Una Mano Revés';
+                        break;
+                    case 'diestro 2':
+                        echo 'Diestro, Dos Manos Revés';
+                        break;
+                    case 'zurdo 1':
+                        echo 'Zurdo, Una Mano Revés';
+                        break;
+                    case 'zurdo 2':
+                        echo 'Zurdo, Dos Manos Revés';
+                        break;
+                }
+                ?></td>
                     <td class="text-center"><a href="actualizar.php?id=<?php echo $registro['ficha_federativa'] ?>"><img src="../imagenesCRUD/actualizar.png" alt="iconoModificar" height="30" width="30"></a></td>
                 </tr>
             <?php
