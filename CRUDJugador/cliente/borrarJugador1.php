@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../../conexionBBDD/conexion.php';
 
 if(isset($_GET['id'])){
     $borrarJugador = $_GET['id'];

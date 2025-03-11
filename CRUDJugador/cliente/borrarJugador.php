@@ -1,6 +1,6 @@
 <?php
-include '../header.php';
-include 'conexion.php';
+include '../../header.php';
+include '../../conexionBBDD/conexion.php';
 
 ?>
 <div class="text-center display-6 py-2">
@@ -12,6 +12,7 @@ mysqli_select_db($conexion, 'TenniStats');
 $consultar = "
             SELECT * 
             FROM jugadores
+            ORDER BY apellidos
             ";
 
 $registros = mysqli_query($conexion, $consultar);
@@ -52,9 +53,9 @@ $registros = mysqli_query($conexion, $consultar);
         </tbody>
     </table>
     <div class="col text-center py-4">
-        <a href="../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
+        <a href="../../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
     </div>
 </div>
 <?php
-include '../footer.php';
+include '../../footer.php';
 ?>

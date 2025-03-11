@@ -1,6 +1,6 @@
 <?php
 //se incluye el archivo que nos dará conexión
-include 'conexion.php';
+include '../../conexionBBDD/conexion.php';
 
 //compruebo que ha llegado la id y le asigno un nombre a la variable
 if (isset($_GET['idmodificar'])){

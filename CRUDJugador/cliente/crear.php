@@ -1,6 +1,6 @@
 <?php
 //se incluye el archivo que nos dará conexión
-include 'conexion.php';
+include '../../conexionBBDD/conexion.php';
 
 //seleccionar bbdd
 mysqli_select_db($conexion, 'TenniStats');

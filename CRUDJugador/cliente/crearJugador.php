@@ -1,5 +1,5 @@
 <?php
-include '../header.php';
+include '../../header.php';
 ?>
 <div class="card-header display-4 bg-light p-2 mx-4 text-center">
     Crear Jugador
@@ -51,10 +51,10 @@ include '../header.php';
             </form>
         </div>
         <div class="col text-center py-4">
-            <a href="../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
+            <a href="../../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
         </div>
     </div>
 </div>
 <?php
-include '../footer.php';
+include '../../footer.php';
 ?>
