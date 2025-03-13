@@ -57,7 +57,7 @@ mysqli_select_db($conexion, 'TenniStats');
             <p class="text-warning"><?php echo $jugadorServicio['jugadorServicio'] ?></p>
         <?php } ?>
         </div>
-        <p id="vs">VS</p>
+        <p class="fw-bolder">VS</p>
         <div class="px-2">
             <label for="" class="text-light fw-medium">Jugador al Resto</label>
             <?php
