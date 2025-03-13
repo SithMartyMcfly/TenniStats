@@ -42,10 +42,10 @@ include '../../header.php';
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Altura</label>
-                    <input type="number" class="form-control" name="altura" id="altura" step="0.05" min="0" required />
+                    <input type="number" class="form-control" name="altura" id="altura" step="0.01" min="0" required />
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label fw-semibold text-success-emphasis">Categoría</label>
+                    <label for="" class="form-label fw-semibold text-success-emphasis">Mano</label>
                     <select name="mano">
                         <option value="diestro 1">Diestro, Una Mano Revés</option>
                         <option value="diestro 2" selected>Diestro, Dos Manos Revés</option>

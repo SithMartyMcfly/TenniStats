@@ -14,7 +14,9 @@
 <body>
 
     <h2 style="background-color: black;">IDpartido<span>FECHA</span></h2>
-    <h3 style="background-color: black;">Jugador 1</h3>
+    <h3 style="background-color: black;">
+        <?php  ?>
+    </h3>
     <div class="contenedorPuntuacion">
         <div class="servicio"></div>
         <div class="container bg-success">

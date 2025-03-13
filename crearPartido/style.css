@@ -1,0 +1,16 @@
+
+
+#partido {
+    display: flex;
+    flex-direction: row;
+    margin-left: 40%;
+    margin-top: 2%;
+}
+
+#vs {
+    padding-left: 2%;
+    padding-right: 2%;
+    font-weight: bolder;
+    align-items: center;
+}
+/*RESET CSS*/

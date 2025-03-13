@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Altura</label>
-                    <input type="number" class="form-control" name="altura" id="altura" step="0.05" min="0" required value="<?php echo $registro['altura'] ?>"/>
+                    <input type="number" class="form-control" name="altura" id="altura" step="0.01" min="0" required value="<?php echo $registro['altura'] ?>"/>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Categoría</label>
@@ -78,7 +78,7 @@ if (isset($_GET['id'])) {
             </form>
         </div>
         <div class="col text-center py-4">
-            <a href="../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
+            <a href="../../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
         </div>
     </div>
 </div>
