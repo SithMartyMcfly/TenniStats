@@ -4,9 +4,13 @@
 }
 
 body{
-    background-color: green;
+    background-color: red;
     color: white;
     margin: 1%;
+}
+
+#idPartido {
+    color: red;
 }
 
 #marcadorJuegos {
@@ -122,5 +126,6 @@ aside{
     color: black;
     margin-bottom: 5%;
 }
+
 
 

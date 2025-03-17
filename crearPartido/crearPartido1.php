@@ -13,11 +13,11 @@ $tipoTorneo = $_POST['tipo_torneo'];
 
 
 $insertar =     "INSERT INTO partidos
-                (fecha, ficha_jugador1, ficha_jugador2, lugar, tipo_superficie, categoria, tipo_torneo) 
+                (fecha, jugador_servicio, jugador_resto, lugar, tipo_superficie, categoria, tipo_torneo) 
                 VALUES ('$fechaPartido', '$jugadorA', '$jugadorB', '$lugar', '$tipoSuperficie', '$categoria', '$tipoTorneo')
                 ";
 
-mysqli_query($conexion, $insertar)
-
+mysqli_query($conexion, $insertar);
+header('Location: ../partidos/MVC_partidos/vista.php');
 ?>
 

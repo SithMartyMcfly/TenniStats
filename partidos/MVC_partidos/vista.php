@@ -8,14 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="shortcut icon" href="logoApp.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
+    <?php include 'controlador.php' ?>
 
-    <h2 style="background-color: black;">IDpartido<span>FECHA</span></h2>
-    <h3 style="background-color: black;">
-        <?php  ?>
+    <h2 class="text-center my-5"><?php echo tituloPartido(); ?></h2>
+    <h3 id="jugadorServicio"><?php echo jugadorServicio() ?>
     </h3>
     <div class="contenedorPuntuacion">
         <div class="servicio"></div>
@@ -27,7 +27,7 @@
             <button type="button" class="btn btn-secondary btn-servicio" id="segundoServicioA">Segundo servicio</button>
         </aside>
     </div>
-    <h3 style="background-color: black;">Jugador 2</h3>
+    <h3 id="jugadoResto"><?php echo jugadorResto(); ?></h3>
     <div class="contenedorPuntuacion">  
         <div class="servicio"></div>
         <div class="container bg-success">
@@ -43,19 +43,19 @@
     <main>
         <table id="juegos">
             <tr id="marcadorJuegosA">
-                <th style="background-color: black;">JugadorA</th>
+                <th class="text-secondary-emphasis"><?php echo jugadorServicio() ?></th>
                 <td id="juegosA">0</td>
             </tr>
             <tr id="marcadorJuegosB">
-                <th style="background-color: black;">JugadorB</th>
+                <th class="text-secondary-emphasis"><?php echo jugadorResto(); ?></th>
                 <td id="juegosB">0</td>
             </tr>
         </table>
-    </main>
-    <h4>Sets</h4>
-    <div id="sets">
-        <div id="setsA">0</div>
-        <div id="setsB">0</div>
+        <h4>Sets</h4>
+        <div id="sets">
+            <div id="setsA">0</div>
+            <div id="setsB">0</div>
+        </main>
     </div>
 
     <section class="modal-finPunto">
@@ -78,8 +78,8 @@
     </section>
     
 
-    <script type="module" src="/js/Jugador.js"></script>
-    <script type="module" src="/js/marcador.js"></script>
+    <script type="module" src="../js/Jugador.js"></script>
+    <script type="module" src="../js/marcador.js"></script>
 </body>
 
 </html>

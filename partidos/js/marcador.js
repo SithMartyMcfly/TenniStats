@@ -6,8 +6,7 @@ let jugadorA = new Jugador();
 let jugadorB = new Jugador();
 
 console.log(jugadorA);
-console.log(jugadorB);
-
+console.log(jugadorB)
 
 
 //MANEJO DEL DOM
