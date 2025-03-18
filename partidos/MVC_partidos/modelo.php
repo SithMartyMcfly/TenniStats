@@ -49,6 +49,7 @@ function getJugadorServicio (){
 
     cerrarConexion($conexion); 
 }
+
 function getJugadorResto(){
     global $conexion;
     $consulta = "SELECT CONCAT (apellidos, ', ' ,nombre) AS jugador
@@ -68,5 +69,43 @@ function getJugadorResto(){
     }
 
     cerrarConexion($conexion); 
+}
+
+function getNumeroSets () {
+    global $conexion;
+
+    $consulta = "SELECT numero_sets
+                FROM partidos
+                WHERE id_partido = (SELECT MAX(id_partido) 
+                                    FROM partidos)";
+    
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if (mysqli_num_rows($resultado)>0){
+        return $resultado;
+    } else {
+        echo 'No hay datos';
+    }
+
+    cerrarConexion($conexion); 
+}
+
+function getNumeroJuegos (){
+    global $conexion;
+
+    $consulta = "SELECT numero_juegos
+                FROM partidos
+                WHERE id_partido = (SELECT MAX(id_partido) 
+                                    FROM partidos)";
+                                    
+                $resultado = mysqli_query($conexion, $consulta);
+
+                if (mysqli_num_rows($resultado)>0){
+                    return $resultado;
+                } else {
+                    echo 'No hay datos';
+                }
+                                
+                cerrarConexion($conexion); 
 }
 ?>

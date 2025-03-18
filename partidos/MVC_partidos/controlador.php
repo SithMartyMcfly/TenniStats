@@ -27,5 +27,23 @@ function jugadorResto () {
     }
     return $jugadorResto;
 }
+
+function numeroSets (){
+    $numeroSets = '';
+    $datos = getNumeroSets();
+    while($fila = mysqli_fetch_assoc($datos)){
+        $numeroSets = $fila ['numero_sets'];
+    }
+    return $numeroSets;
+}
+
+function numeroJuegos () {
+    $numeroJuegos = '';
+    $datos = getNumeroJuegos();
+    while ($fila = mysqli_fetch_assoc($datos)){
+        $numeroJuegos = $fila ['numero_juegos'];
+    }
+    return $numeroJuegos;
+}
 ?>
 

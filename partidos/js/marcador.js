@@ -31,7 +31,6 @@ const primerServicioB = document.getElementById('primerServicioB');
 
 
 
-
 //VARIABLES GLOBALES
 let contadorA = 0;
 let contadorB = 0;
@@ -42,7 +41,14 @@ let contadorJuegosTotales = 0;
 let contadorSetsA = 0;
 let contadorSetsB = 0;
 let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
-let numeroSets = 2;
+/*el numero de sets viene de forma dinámica desde PHP*/ 
+if (typeof numeroSets != 'undefined'){
+    numeroSets = parseInt (numeroSets, 10);
+};
+if (typeof numeroSets != 'undefined'){
+    numeroJuegos = parseInt (numeroJuegos, 10);
+};
+
 
 //FUNCIONES PARA MANEJAR EL RESULTADO
 
@@ -56,6 +62,7 @@ function ganadorSetB() {
     marcadorJuegosB.lastElementChild.style.background = 'grey';
 }
 //función que activa la puntuación especial de tieBreak
+//todo: añadir condición de juegos en tiebreak
 function activarTieBreak() {
     enTieBreak = contadorJuegosA === 3 && contadorJuegosB === 3;
     //stat de TB jugados por ambos jugadores
@@ -479,7 +486,8 @@ function resultadoJuegosB() {
 function setsTotalesA() {
 
     if (!enTieBreak) {
-        if (contadorJuegosA >= 3 && contadorJuegosA > contadorJuegosB + 1) {
+        //TODO: añadir juegostotales - 1
+        if (contadorJuegosA >= (numeroJuegos-1) && contadorJuegosA > contadorJuegosB + 1) {
             contadorSetsA++;
             jugadorA.incrementaSetsGanados(); //stat set ganados jugador A
 
@@ -528,7 +536,7 @@ function setsTotalesA() {
 function setsTotalesB() {
 
     if (!enTieBreak) {
-        if (contadorJuegosB >= 3 && contadorJuegosB > contadorJuegosA + 1) {
+        if (contadorJuegosB >= (numeroJuegos-1) && contadorJuegosB > contadorJuegosA + 1) {
             contadorSetsB++;
             jugadorB.incrementaSetsGanados(); //stat set ganados jugador B
             marcadorJuegosA.insertAdjacentHTML("beforeend",

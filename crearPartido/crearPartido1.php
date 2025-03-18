@@ -10,11 +10,13 @@ $lugar = $_POST['lugar'];
 $tipoSuperficie = $_POST['tipo_superficie'];
 $categoria = $_POST['categoria'];
 $tipoTorneo = $_POST['tipo_torneo'];
+$numeroSets = $_POST['numero_sets'];
+$numeroJuegos = $_POST['numero_juegos'];
 
 
 $insertar =     "INSERT INTO partidos
-                (fecha, jugador_servicio, jugador_resto, lugar, tipo_superficie, categoria, tipo_torneo) 
-                VALUES ('$fechaPartido', '$jugadorA', '$jugadorB', '$lugar', '$tipoSuperficie', '$categoria', '$tipoTorneo')
+                (fecha, jugador_servicio, jugador_resto, lugar, tipo_superficie, categoria, tipo_torneo, numero_sets, numero_juegos) 
+                VALUES ('$fechaPartido', '$jugadorA', '$jugadorB', '$lugar', '$tipoSuperficie', '$categoria', '$tipoTorneo', '$numeroSets', '$numeroJuegos')
                 ";
 
 mysqli_query($conexion, $insertar);

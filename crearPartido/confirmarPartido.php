@@ -10,6 +10,8 @@ $lugar = $_POST['lugar'];
 $tipoSuperficie = $_POST['tipo_superficie'];
 $categoria = $_POST['categoria'];
 $tipoTorneo = $_POST['tipo_torneo'];
+$numeroSets = $_POST['numero_sets'];
+$numeroJuegos = $_POST['numero_juegos'];
 
 //recupero los datos de los jugadores
 
@@ -30,6 +32,8 @@ mysqli_select_db($conexion, 'TenniStats');
     <input type="hidden" name="tipo_superficie" value="<?php echo $tipoSuperficie; ?>">
     <input type="hidden" name="categoria" value="<?php echo $categoria; ?>">
     <input type="hidden" name="tipo_torneo" value="<?php echo $tipoTorneo; ?>">
+    <input type="hidden" name="numero_sets" value="<?php echo $numeroSets; ?>">
+    <input type="hidden" name="numero_juegos" value="<?php echo $numeroJuegos; ?>">
 
     <div id="confirmación" class="d-flex col mt-4 justify-content-center py-2 bg-light">
         <button class="btn btn-primary me-2" type="submit">Confirmar</button>
@@ -91,6 +95,16 @@ mysqli_select_db($conexion, 'TenniStats');
     <div class="d-flex row mt-4 justity-content-center">
         <label for="" class="fw-bolder">Tipo de Torneo</label>
         <p><?php echo $tipoTorneo ?></p>
+
+    </div>
+    <div class="d-flex row mt-4 justity-content-center">
+        <label for="" class="fw-bolder">Número de sets</label>
+        <p><?php echo $numeroSets ?></p>
+
+    </div>
+    <div class="d-flex row mt-4 justity-content-center">
+        <label for="" class="fw-bolder">Número de juegos</label>
+        <p><?php echo $numeroJuegos ?></p>
 
     </div>
 </main>

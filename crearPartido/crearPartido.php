@@ -78,8 +78,23 @@ include '../conexionBBDD/conexion.php';
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Tipo de Torneo</label>
+                    <label for="" class="form-label fw-semibold text-success-emphasis">Tipo de Torneo</label>
                     <input type="text" class="form-control" name="tipo_torneo" id="tipo_torneo" required />
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label fw-semibold text-success-emphasis">Número de sets</label>
+                    <select name="numero_sets">
+                        <option value="1" selected>1</option>
+                        <option value="3" selected>3</option>
+                        <option value="5">5</option>  
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label fw-semibold text-success-emphasis">Número de juegos</label>
+                    <select name="numero_juegos">
+                        <option value="1">4</option>
+                        <option value="3" selected>6</option>  
+                    </select>
                 </div>
 
                 <div class="d-grid">

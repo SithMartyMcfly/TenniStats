@@ -77,7 +77,12 @@
         </div>
     </section>
     
-
+    <script>
+        /*aprovechando el modelo vista controlador, pasamos dinámincamente el número de sets
+        a la lógica de nuestra aplicación*/
+        let numeroSets = <?php echo numeroSets();?>
+        let numeroJuegos = <?php echo numeroJuegos();?>
+    </script>
     <script type="module" src="../js/Jugador.js"></script>
     <script type="module" src="../js/marcador.js"></script>
 </body>
