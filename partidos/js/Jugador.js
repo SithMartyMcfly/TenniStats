@@ -1,12 +1,14 @@
 
 class Jugador {
     constructor() {
+        this.nombre;
         this.Servicio; //atributo para controlar quien saca
         this.primerServicio = 0;//jugador juega con primer servicio
         this.segundoServicio = 0; //jugador juega con segundo servicio
         this.puntosGanados = 0; //puntos totales que ha ganado el jugador
-        this.aces=0; //puntos directos de servicio
-        this.dobleFalta=0; //cuando el jugador al servicio no consigue meter ninguno de los dos servicios
+        this.aces=0; //puntos directos de servicio//
+        this.dobleFalta=0; //cuando el jugador al servicio no consigue meter ninguno de los dos servicios//
+        this.puntoServicio=0 //puntos disputados sacando el jugador
         this.error=0 //cuando el jugador gana cometiendo un error el contrario
         this.winners=0; //cuando un jugador gana el punto de un tiro directo
         this.puntosBreakAfrontados=0; //cuando yo saco y tengo que defender mi servicio
@@ -42,7 +44,7 @@ class Jugador {
         this.juegosResto = juegosTotales - juegosServicioJugadorA;
     }
 
-    incremantaAce(){
+    incrementaAce(){
         this.aces++;
     }
     incrementarDobleFalta(){
@@ -54,10 +56,10 @@ class Jugador {
     incrementaWinner (){
         this.winners++;
     }
-    incremantaPrimerServicio (){
+    incrementaPrimerServicio (){
         this.primerServicio++;
     }
-    incremantaSegundoServicio (){
+    incrementaSegundoServicio (){
         this.segundoServicio++;
     }
     incrementaSetsGanados (){
@@ -65,6 +67,12 @@ class Jugador {
     }
     incrementaTieBreaksGanados (){
         this.tieBreaksGanados++
+    }
+    //metodo para sumar puntos al servicio
+    puntosAlServicio (servicio){
+        if(servicio === true) {
+            this.puntosAlServicio++;
+        }
     }
     
 }

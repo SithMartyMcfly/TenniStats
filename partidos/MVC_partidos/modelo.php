@@ -90,12 +90,12 @@ function getNumeroSets () {
     cerrarConexion($conexion); 
 }
 
-function getNumeroJuegos (){
+function getNumeroJuegos () {
     global $conexion;
 
     $consulta = "SELECT numero_juegos
                 FROM partidos
-                WHERE id_partido = (SELECT MAX(id_partido) 
+                WHERE id_partido = (SELECT MAX(id_partido)
                                     FROM partidos)";
                                     
                 $resultado = mysqli_query($conexion, $consulta);

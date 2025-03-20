@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: red;
+    background-color: green;
     color: white;
     margin: 1%;
 }
@@ -64,7 +64,8 @@ aside{
     padding-left: 10%;
 }
 
-
+                /*MODALES PROPIEDADES
+aprovecharemos las clases para mostrar y cerrarlos*/
 .modal-finPunto {
     position: fixed;
     top: 0;

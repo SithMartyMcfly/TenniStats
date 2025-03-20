@@ -7,12 +7,12 @@
     <title>Marcador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="shortcut icon" href="logoApp.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../logoApp.png" type="image/x-icon">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
-    <?php include 'controlador.php' ?>
+    <?php include 'controlador.php';?>
 
     <h2 class="text-center my-5"><?php echo tituloPartido(); ?></h2>
     <h3 id="jugadorServicio"><?php echo jugadorServicio() ?>
@@ -28,7 +28,7 @@
         </aside>
     </div>
     <h3 id="jugadoResto"><?php echo jugadorResto(); ?></h3>
-    <div class="contenedorPuntuacion">  
+    <div class="contenedorPuntuacion">
         <div class="servicio"></div>
         <div class="container bg-success">
             <p id="marcadorB">0</p>
@@ -55,9 +55,10 @@
         <div id="sets">
             <div id="setsA">0</div>
             <div id="setsB">0</div>
-        </main>
+        </div>
+    </main>
     </div>
-
+<!--Modales para interactuar como se ha producido el punto-->
     <section class="modal-finPunto">
         <div class="modal-container">
             <h3 class="modal-titulo">¿Como ganó el punto?</h3>
@@ -77,11 +78,11 @@
         </div>
     </section>
     
+
     <script>
         /*aprovechando el modelo vista controlador, pasamos dinámincamente el número de sets
         a la lógica de nuestra aplicación*/
-        let numeroSets = <?php echo numeroSets();?>
-        let numeroJuegos = <?php echo numeroJuegos();?>
+        let numeroSets = <?php echo numeroSets();?>, numeroJuegos = <?php echo numeroJuegos()?>
     </script>
     <script type="module" src="../js/Jugador.js"></script>
     <script type="module" src="../js/marcador.js"></script>

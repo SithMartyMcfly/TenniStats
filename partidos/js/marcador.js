@@ -1,12 +1,9 @@
-import Jugador from './Jugador.js';
+import Jugador from '../js/Jugador.js';
 
 //dejar la instanciación con let cuando termine las pruebas
-
+//window para acceder en tiempo de ejecución
 let jugadorA = new Jugador();
 let jugadorB = new Jugador();
-
-console.log(jugadorA);
-console.log(jugadorB)
 
 
 //MANEJO DEL DOM
@@ -41,13 +38,18 @@ let contadorJuegosTotales = 0;
 let contadorSetsA = 0;
 let contadorSetsB = 0;
 let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
-/*el numero de sets viene de forma dinámica desde PHP*/ 
-if (typeof numeroSets != 'undefined'){
-    numeroSets = parseInt (numeroSets, 10);
+
+/*el numero de sets y juegos viene de forma dinámica desde PHP*/
+if (typeof numeroSets != 'undefined') {
+    numeroSets = parseInt(numeroSets, 10);
 };
-if (typeof numeroSets != 'undefined'){
-    numeroJuegos = parseInt (numeroJuegos, 10);
-};
+if (typeof numeroJuegos != 'undefined') {
+    numeroJuegos = parseInt(numeroJuegos, 10);
+} else {
+    console.log ('No entran los juegos');
+}; 
+
+
 
 
 //FUNCIONES PARA MANEJAR EL RESULTADO
@@ -61,13 +63,30 @@ function ganadorSetB() {
     marcadorJuegosB.lastElementChild.style.background = 'grey';
     marcadorJuegosB.lastElementChild.style.background = 'grey';
 }
-//función que activa la puntuación especial de tieBreak
-//todo: añadir condición de juegos en tiebreak
+
+/*añadimos una condicion dentro de la activación de tie-break ya que, cuando jugamos
+sets a 4 juegos el tie-break se inicia un juego antes del límite para apuntarse el set
+y cuando es un set normal a 6 se inicia cuando ambos jugadores llegan a 6 juegos*/
 function activarTieBreak() {
-    enTieBreak = contadorJuegosA === 3 && contadorJuegosB === 3;
-    //stat de TB jugados por ambos jugadores
-    jugadorA.tieBreaksJugados++;
-    jugadorB.tieBreaksJugados++;
+    if (numeroJuegos === 6){
+        if (enTieBreak = contadorJuegosA === numeroJuegos && contadorJuegosB === numeroJuegos) {
+            enTieBreak = true;
+            //stat de TB jugados por ambos jugadores
+            jugadorA.tieBreaksJugados++;
+            jugadorB.tieBreaksJugados++;
+        } else {
+            enTieBreak = false;
+        }
+    } else {
+        if (enTieBreak = contadorJuegosA === (numeroJuegos-1) && contadorJuegosB === (numeroJuegos-1)) {
+            enTieBreak = true;
+            //stat de TB jugados por ambos jugadores
+            jugadorA.tieBreaksJugados++;
+            jugadorB.tieBreaksJugados++;
+        } else {
+            enTieBreak = false;
+        }
+    }
 }
 
 function actualizarServicio() {
@@ -144,27 +163,33 @@ function actualizarServicio() {
 function ganadorPartido() {
     if (contadorSetsA === numeroSets) {
         //stat partido ganado jugador A
+        finPartido();
         jugadorA.partidoGanado++;
         console.log('Gana jugador A')
         marcadorJuegosA.style.background = 'green';
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
 
-        //Stats calculadas
-        jugadorA.juegosTotalesResto(contadorJuegosTotales, jugadorB.juegosServicio);
-        jugadorB.juegosTotalesResto(contadorJuegosTotales, jugadorA.juegosServicio);
-        jugadorA.juegosJugados = contadorJuegosTotales;
-        jugadorB.juegosJugados = contadorJuegosTotales;
-
     }
     if (contadorSetsB === numeroSets) {
         //stat partido ganado jugador B
+        finPartido();
         jugadorB.partidoGanado++;
         console.log('Gana jugador B');
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
         marcadorJuegosB.style.background = 'green';
     }
+}
+
+function finPartido() {
+    primerServicioA.disabled = true;
+    segundoServicioA.disabled = true;
+    primerServicioB.disabled = true;
+    segundoServicioB.disabled = true;
+
+    deshabilitarEventos();
+    alert('PARTIDO TERMINADO');
 }
 
 //MANEJADORES DE EVENTOS
@@ -182,25 +207,25 @@ function deshabilitarEventos() {
 deshabilitarEventos();
 
 primerServicioA.addEventListener('click', () => {
-    jugadorA.incremantaPrimerServicio();
+    jugadorA.incrementaPrimerServicio();
     habilitarEventos();
     primerServicioA.disabled = true;
     segundoServicioA.disabled = true;
 });
 segundoServicioA.addEventListener('click', () => {
-    jugadorA.incremantaSegundoServicio();
+    jugadorA.incrementaSegundoServicio();
     habilitarEventos();
     primerServicioA.disabled = true;
     segundoServicioA.disabled = true;
 });
 primerServicioB.addEventListener('click', () => {
-    jugadorB.incremantaPrimerServicio();
+    jugadorB.incrementaPrimerServicio();
     habilitarEventos();
     primerServicioB.disabled = true;
     segundoServicioB.disabled = true;
 });
 segundoServicioB.addEventListener('click', () => {
-    jugadorB.incremantaSegundoServicio()
+    jugadorB.incrementaSegundoServicio()
     //marcadorB.addEventListener('click', resultadoB);
     habilitarEventos();
     primerServicioB.disabled = true;
@@ -333,7 +358,7 @@ cerrarModal.forEach(boton => {
         //capturamos con el switch case la clase del botón donde pulsamos
         switch (true) {
             case event.target.classList.contains('ace'):
-                jugadorA.incremantaAce();
+                jugadorA.incrementaAce();
                 break;
             case event.target.classList.contains('df'):
                 jugadorB.incrementarDobleFalta();
@@ -352,8 +377,8 @@ cerrarModal.forEach(boton => {
         primerServicioB.disabled = false;
         segundoServicioB.disabled = false;
         actualizarMarcadorA();
-        modalfinPunto.classList.remove('modal-finPunto-show');
         deshabilitarEventos();
+        modalfinPunto.classList.remove('modal-finPunto-show');
     });
 });
 
@@ -379,7 +404,7 @@ cerrarModalB.forEach(boton => {
         //capturamos con el switch case la clase del botón donde pulsamos
         switch (true) {
             case event.target.classList.contains('aceb'):
-                jugadorB.incremantaAce();
+                jugadorB.incrementaAce();
                 break;
             case event.target.classList.contains('dfb'):
                 jugadorA.incrementarDobleFalta();
@@ -487,7 +512,7 @@ function setsTotalesA() {
 
     if (!enTieBreak) {
         //TODO: añadir juegostotales - 1
-        if (contadorJuegosA >= (numeroJuegos-1) && contadorJuegosA > contadorJuegosB + 1) {
+        if (contadorJuegosA >= numeroJuegos && contadorJuegosA > contadorJuegosB + 1) {
             contadorSetsA++;
             jugadorA.incrementaSetsGanados(); //stat set ganados jugador A
 
@@ -536,7 +561,7 @@ function setsTotalesA() {
 function setsTotalesB() {
 
     if (!enTieBreak) {
-        if (contadorJuegosB >= (numeroJuegos-1) && contadorJuegosB > contadorJuegosA + 1) {
+        if (contadorJuegosB >= numeroJuegos && contadorJuegosB > contadorJuegosA + 1) {
             contadorSetsB++;
             jugadorB.incrementaSetsGanados(); //stat set ganados jugador B
             marcadorJuegosA.insertAdjacentHTML("beforeend",

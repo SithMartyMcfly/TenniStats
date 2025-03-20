@@ -14,6 +14,6 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header class="card-header display-2 col text-center bg-success p-2">Gestor de Jugadores</header>
+    <header class="card-header display-2 col text-center bg-success p-2">TenniStats</header>
     <main class="bg-success">
         

@@ -68,9 +68,10 @@ include '../conexionBBDD/conexion.php';
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Categoría</label>
-                    <select name="categoria">
+                    <select name="categoria" required>
+                        <option value="" selected>--SELECCIONA UNA OPCIÓN--</option>
                         <option value="BENJAMIN">Benjamín</option>
-                        <option value="ALEVIN" selected>Alevín</option>
+                        <option value="ALEVIN">Alevín</option>
                         <option value="INFANTIL">Infantil</option>
                         <option value="CADETE">Cadete</option>
                         <option value="ABSOLUTO">Absoluto</option>
@@ -83,17 +84,19 @@ include '../conexionBBDD/conexion.php';
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Número de sets</label>
-                    <select name="numero_sets">
-                        <option value="1" selected>1</option>
-                        <option value="3" selected>3</option>
+                    <select name="numero_sets" required>
+                        <option value="" selected>--SELECCIONA UNA OPCIÓN--</option>
+                        <option value="1">1</option>
+                        <option value="3">3</option>
                         <option value="5">5</option>  
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Número de juegos</label>
-                    <select name="numero_juegos">
-                        <option value="1">4</option>
-                        <option value="3" selected>6</option>  
+                    <select name="numero_juegos" required>
+                        <option value="" selected>--SELECCIONA UNA OPCIÓN</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>  
                     </select>
                 </div>
 

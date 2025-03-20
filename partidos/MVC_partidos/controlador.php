@@ -37,13 +37,13 @@ function numeroSets (){
     return $numeroSets;
 }
 
-function numeroJuegos () {
-    $numeroJuegos = '';
+function numeroJuegos (){
+    $juegos= '';
     $datos = getNumeroJuegos();
     while ($fila = mysqli_fetch_assoc($datos)){
-        $numeroJuegos = $fila ['numero_juegos'];
+        $juegos = $fila ['numero_juegos'];
     }
-    return $numeroJuegos;
+    return $juegos;
 }
 ?>
 
