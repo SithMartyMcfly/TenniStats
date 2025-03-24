@@ -1,6 +1,6 @@
 
 <?php
-require '../../conexionBBDD/conexion.php';
+require '../conexionBBDD/conexion.php';
 
 
 mysqli_select_db($conexion, 'TenniStats');

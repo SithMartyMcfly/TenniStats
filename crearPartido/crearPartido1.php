@@ -20,6 +20,6 @@ $insertar =     "INSERT INTO partidos
                 ";
 
 mysqli_query($conexion, $insertar);
-header('Location: ../partidos/MVC_partidos/vista.php');
+header('Location: ../MVC_partidos/vista.php');
 ?>
 

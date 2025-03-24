@@ -1,4 +1,5 @@
-import Jugador from '../js/Jugador.js';
+import Jugador from './Jugador.js';
+import { enviarDatos } from './enviarDatos.js';
 
 //dejar la instanciación con let cuando termine las pruebas
 //window para acceder en tiempo de ejecución
@@ -189,6 +190,7 @@ function finPartido() {
     segundoServicioB.disabled = true;
 
     deshabilitarEventos();
+    enviarDatos(jugadorA, jugadorB, '../persistencia.php');
     alert('PARTIDO TERMINADO');
 }
 
