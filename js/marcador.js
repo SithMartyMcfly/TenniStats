@@ -3,8 +3,11 @@ import { enviarDatos } from './enviarDatos.js';
 
 //dejar la instanciación con let cuando termine las pruebas
 //window para acceder en tiempo de ejecución
-let jugadorA = new Jugador();
-let jugadorB = new Jugador();
+const jugadorA = new Jugador();
+const jugadorB = new Jugador();
+
+console.log(jugadorA);
+console.log(jugadorB);
 
 
 //MANEJO DEL DOM
@@ -188,10 +191,12 @@ function finPartido() {
     segundoServicioA.disabled = true;
     primerServicioB.disabled = true;
     segundoServicioB.disabled = true;
-
+    jugadorA.calcularPorcentajeBreakSalvados(jugadorB.puntosBreakGanados);
+    jugadorB.calcularPorcentajeBreakSalvados(jugadorA.puntosBreakGanados);
     deshabilitarEventos();
     enviarDatos(jugadorA, jugadorB, '../persistencia.php');
     alert('PARTIDO TERMINADO');
+
 }
 
 //MANEJADORES DE EVENTOS
@@ -245,6 +250,11 @@ function actualizarMarcadorA() {
     if (!enTieBreak) {
         let resultado;
         contadorA++;
+        if(jugadorA.Servicio===true){
+            jugadorA.puntoServicio++;
+        } else {
+            jugadorB.puntoServicio++;
+        }
         //puntos que gana el jugador A
         jugadorA.puntosGanados++;
         jugadorA.contadorBreaksAfrontados(jugadorA.Servicio, contadorA, contadorB);
@@ -297,6 +307,11 @@ function actualizarMarcadorB() {
     if (!enTieBreak) {
         let resultado;
         contadorB++;
+        if(jugadorA.Servicio===true){
+            jugadorA.puntoServicio++;
+        } else {
+            jugadorB.puntoServicio++;
+        }
         jugadorB.puntosGanados++;
         /*hay que llamar aqui tambien los afrontados del jugador contrario ya que cuando sumamos
         break points en ventaja, este se produce clicando en el marcador del jugadorB, igual haremos
@@ -361,15 +376,30 @@ cerrarModal.forEach(boton => {
         switch (true) {
             case event.target.classList.contains('ace'):
                 jugadorA.incrementaAce();
+                if (jugadorA.Primero === true && jugadorA.Servicio === true) {
+                    jugadorA.ganadoPrimeroServicio++;
+                } else if (jugadorA.Primero=== false && jugadorA.Servicio === true) {
+                    jugadorA.ganadoSegundoServicio++;
+                }
                 break;
             case event.target.classList.contains('df'):
                 jugadorB.incrementarDobleFalta();
                 break;
             case event.target.classList.contains('winner'):
                 jugadorA.incrementaWinner();
+                if (jugadorA.Primero === true && jugadorA.Servicio === true) {
+                    jugadorA.ganadoPrimeroServicio++;
+                } else if (jugadorA.Primero=== false && jugadorA.Servicio === true) {
+                    jugadorA.ganadoSegundoServicio++;
+                }
                 break;
             case event.target.classList.contains('error'):
                 jugadorB.incrementarError();
+                if (jugadorA.Primero === true && jugadorA.Servicio === true) {
+                    jugadorA.ganadoPrimeroServicio++;
+                } else if (jugadorA.Primero=== false && jugadorA.Servicio === true) {
+                    jugadorA.ganadoSegundoServicio++;
+                }
                 break;
             default:
                 break;
@@ -407,15 +437,30 @@ cerrarModalB.forEach(boton => {
         switch (true) {
             case event.target.classList.contains('aceb'):
                 jugadorB.incrementaAce();
+                if (jugadorB.Primero === true && jugadorB.Servicio === true) {
+                    jugadorB.ganadoPrimeroServicio++;
+                } else if (jugadorB.Primero=== false && jugadorB.Servicio === true) {
+                    jugadorB.ganadoSegundoServicio++;
+                }
                 break;
             case event.target.classList.contains('dfb'):
                 jugadorA.incrementarDobleFalta();
                 break;
             case event.target.classList.contains('winnerb'):
                 jugadorB.incrementaWinner();
+                if (jugadorB.Primero === true && jugadorB.Servicio === true) {
+                    jugadorB.ganadoPrimeroServicio++;
+                } else if (jugadorB.Primero=== false && jugadorB.Servicio === true) {
+                    jugadorB.ganadoSegundoServicio++;
+                }
                 break;
             case event.target.classList.contains('errorb'):
-                jugadorA.incrementarError();
+                jugadorA.incrementarError();  
+                if (jugadorB.Primero === true && jugadorB.Servicio === true) {
+                    jugadorB.ganadoPrimeroServicio++;
+                } else if (jugadorB.Primero=== false && jugadorB.Servicio === true) {
+                    jugadorB.ganadoSegundoServicio++;
+                }
                 break;
             default:
                 break;
@@ -606,6 +651,8 @@ function setsTotalesB() {
 }
 
 //ESTADISTICAS DERIVADAS
+//stats servicio
+//una interfaz para los métodos que hay que añadir
 jugadorA.juegosTotalesResto(contadorJuegosTotales, jugadorA.juegosServicio);
 jugadorB.juegosTotalesResto(contadorJuegosTotales, jugadorB.juegosServicio);
 jugadorA.juegosJugados = contadorJuegosTotales;

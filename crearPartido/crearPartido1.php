@@ -15,7 +15,7 @@ $numeroJuegos = $_POST['numero_juegos'];
 
 
 $insertar =     "INSERT INTO partidos
-                (fecha, jugador_servicio, jugador_resto, lugar, tipo_superficie, categoria, tipo_torneo, numero_sets, numero_juegos) 
+                (fecha, ficha_jugador1, ficha_jugador2, lugar, tipo_superficie, categoria, tipo_torneo, numero_sets, numero_juegos) 
                 VALUES ('$fechaPartido', '$jugadorA', '$jugadorB', '$lugar', '$tipoSuperficie', '$categoria', '$tipoTorneo', '$numeroSets', '$numeroJuegos')
                 ";
 
