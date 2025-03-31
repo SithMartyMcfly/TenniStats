@@ -67,7 +67,7 @@ class Jugador {
         if (this.segundoServicio === 0){
             return 0;
         } else {
-            this.porcentajePrimerosGanados = (this.ganadoSegundoServicio*100)/this.segundoServicio;
+            this.porcentajeSegundosGanados = (this.ganadoSegundoServicio*100)/this.segundoServicio;
             return this.porcentajeSegundosGanados;
         }
     }
@@ -77,6 +77,7 @@ class Jugador {
             return 0;
         }
         this.porcentajeServiciosGanados = ((this.ganadoPrimeroServicio+this.ganadoSegundoServicio)/this.puntoServicio)*100;
+        return this.porcentajeServiciosGanados;
     }
 
     contadorBreaksAfrontados(servicio, puntosJugadorA, puntosJugadorB) {
@@ -162,7 +163,7 @@ class Jugador {
             errores: this.error,
             puntosBreakAfrontados: this.puntosBreakAfrontados,
             porcentajePrimerServicio: this.getPorcentajePrimerServicio,
-            porcentajeSegundosGanados: this.getPorcentajeSegundoServicioGanado,
+            porcentajeSegundosGanados: this.getPorcentajeSegundoServicioGanados, //falta
             porcentajePrimerosGanados: this.getPorcentajePrimerServicioGanados,
             porcentajeBreakSalvados: this.getPorcentajeBreakSalvados,
             porcentajePuntoServicioGanados: this.getPorcentajePuntoServicioGanados

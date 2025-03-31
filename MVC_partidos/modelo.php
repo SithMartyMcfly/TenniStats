@@ -33,7 +33,7 @@ function getJugadorServicio (){
     global $conexion;
     $consulta = $consulta = "SELECT CONCAT (apellidos, ', ' ,nombre) AS jugador
                             FROM jugadores
-                            WHERE ficha_federativa = (SELECT jugador_servicio 
+                            WHERE ficha_federativa = (SELECT ficha_jugador1 
                                                     FROM partidos 
                                                     WHERE id_partido = (SELECT MAX(id_partido) 
                                                     FROM partidos))
@@ -54,7 +54,7 @@ function getJugadorResto(){
     global $conexion;
     $consulta = "SELECT CONCAT (apellidos, ', ' ,nombre) AS jugador
                 FROM jugadores
-                WHERE ficha_federativa = (SELECT jugador_resto 
+                WHERE ficha_federativa = (SELECT ficha_jugador2 
 						                FROM partidos 
                                         WHERE id_partido = (SELECT MAX(id_partido) 
 										FROM partidos))
