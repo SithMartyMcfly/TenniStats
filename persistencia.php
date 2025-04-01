@@ -70,7 +70,7 @@ $insercionA->bind_param(
     $acesA, $dobleFaltaA, $winnersA, $errorA, $puntosBreakAfrontadosA,
     $porcentajePrimerServicioA, $porcentajePrimerosGanadosA, $porcentajeSegundosGanadoA,
     $porcentajePuntoServicioGanadosA, $porcentajeBreakSalvadosA, $puntosBreakGanadosA,
-    $puntosBreakAfrontadosA, $porcentajeBreakSalvadosA
+    $puntosBreakJugadosA, $porcentajeBreaksGanadosA
 );
 $insercionA->execute();
 
@@ -96,7 +96,7 @@ $insercionB->bind_param(
     $acesB, $dobleFaltaB, $winnersB, $errorB, $puntosBreakAfrontadosB,
     $porcentajePrimerServicioB, $porcentajePrimerosGanadosB, $porcentajeSegundosGanadoB,
     $porcentajePuntoServicioGanadosB, $porcentajeBreakSalvadosB, $puntosBreakGanadosB,
-    $puntosBreakAfrontadosB, $porcentajeBreakSalvadosB
+    $puntosBreakJugadosB, $porcentajeBreaksGanadosB
 );
 $insercionB->execute();
 
