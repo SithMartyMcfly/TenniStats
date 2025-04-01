@@ -196,7 +196,6 @@ function finPartido() {
     deshabilitarEventos();
     enviarDatos(jugadorA, jugadorB, '../persistencia.php');
     alert('PARTIDO TERMINADO');
-
 }
 
 //MANEJADORES DE EVENTOS

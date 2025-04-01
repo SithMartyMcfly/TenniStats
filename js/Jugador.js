@@ -22,9 +22,10 @@ class Jugador {
         //stats de resto
         this.puntosBreakJugados = 0; // cuando yo tengo opción de romper el servicio de mi rival
         this.puntosBreakGanados = 0; // cuando consigo romper el servicio de mi rival
+        this.porcentajeBreaksGanados = 0 // porcenjate de breaks que gano al resto
         //stats varias
-        this.error = 0 //cuando el jugador gana cometiendo un error el contrario
-        this.winners = 0; //cuando un jugador gana el punto de un tiro directo
+        this.error = 0 //cuando el jugador gana cometiendo un error el contrario BBDD
+        this.winners = 0; //cuando un jugador gana el punto de un tiro directo BBDD
         this.puntosGanados = 0; //puntos totales que ha ganado el jugador
         this.juegosResto = 0; //calculada en marcador.js
         this.juegosJugados = 0; // calculada en marcador.js (calculado en los juegos ganados de cada uno)
@@ -78,6 +79,14 @@ class Jugador {
         }
         this.porcentajeServiciosGanados = ((this.ganadoPrimeroServicio+this.ganadoSegundoServicio)/this.puntoServicio)*100;
         return this.porcentajeServiciosGanados;
+    }
+
+    calcularPorcentajeBreaksGanados () {
+        if (this.puntosBreakJugados === 0) {
+            return 0;
+        }
+        this.porcentajeBreaksGanados = (this.puntosBreakGanados/this.puntosBreakJugados) * 100;
+        return this.porcentajeBreaksGanados;
     }
 
     contadorBreaksAfrontados(servicio, puntosJugadorA, puntosJugadorB) {
@@ -155,6 +164,10 @@ class Jugador {
         return this.calcularPorcentajePuntosGanadosServicio();
     }
 
+    get getPorcentajeBreaksGanados () {
+        return this.calcularPorcentajeBreaksGanados();
+    }
+
     toJSON() {
         return {
             aces: this.aces,
@@ -162,11 +175,14 @@ class Jugador {
             winners: this.winners,
             errores: this.error,
             puntosBreakAfrontados: this.puntosBreakAfrontados,
+            puntosBreakGanados : this.puntosBreakGanados, //falta
+            puntosBreakJugados : this.puntosBreakJugados, //falta
             porcentajePrimerServicio: this.getPorcentajePrimerServicio,
-            porcentajeSegundosGanados: this.getPorcentajeSegundoServicioGanados, //falta
+            porcentajeSegundosGanados: this.getPorcentajeSegundoServicioGanados,
             porcentajePrimerosGanados: this.getPorcentajePrimerServicioGanados,
             porcentajeBreakSalvados: this.getPorcentajeBreakSalvados,
-            porcentajePuntoServicioGanados: this.getPorcentajePuntoServicioGanados
+            porcentajePuntoServicioGanados: this.getPorcentajePuntoServicioGanados,
+            porcentajeBreaksGanados: this.getPorcentajeBreaksGanados //falta
         }
     }
 }
