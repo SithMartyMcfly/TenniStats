@@ -59,7 +59,7 @@ $idJugadorA = $conexion->query("SELECT ficha_jugador1
                                 WHERE id_partido = $idPartido")->fetch_assoc()['ficha_jugador1'];
 
 $insercionA->bind_param(
-    'siiiiiiiiiii',
+    'siiiiiiddddd',
     $idJugadorA, $idPartido,
     $acesA, $dobleFaltaA, $winnersA, $errorA, $puntosBreakAfrontadosA,
     $porcentajePrimerServicioA, $porcentajePrimerosGanadosA, $porcentajeSegundosGanadoA,
@@ -83,7 +83,7 @@ $idJugadorB = $conexion->query("SELECT ficha_jugador2
                                 FROM partidos 
                                 WHERE id_partido = $idPartido")->fetch_assoc()['ficha_jugador2'];
 $insercionB->bind_param(
-    'siiiiiiiiiii',
+    'siiiiiiddddd',
     $idJugadorB, $idPartido,
     $acesB, $dobleFaltaB, $winnersB, $errorB, $puntosBreakAfrontadosB,
     $porcentajePrimerServicioB, $porcentajePrimerosGanadosB, $porcentajeSegundosGanadoB,
