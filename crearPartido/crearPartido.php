@@ -56,7 +56,7 @@ include '../conexionBBDD/conexion.php';
 
                     </select>
                 </div>
-                
+
 
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Club</label>
@@ -64,7 +64,14 @@ include '../conexionBBDD/conexion.php';
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Tipo Superficie</label>
-                    <input type="texto" class="form-control" name="tipo_superficie" id="tipo_superficie" required />
+                    <select name="tipo_superficie" required>
+                        <option value="" selected>--SELECCIONA UNA OPCIÓN--</option>
+                        <option value="tierra_batida">Tierra Batida</option>
+                        <option value="albero">Albero</option>
+                        <option value="cemento">Cemento</option>
+                        <option value="hierba">Hierba</option>
+                        <option value="otro">Otro</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label fw-semibold text-success-emphasis">Categoría</label>
@@ -88,7 +95,7 @@ include '../conexionBBDD/conexion.php';
                         <option value="" selected>--SELECCIONA UNA OPCIÓN--</option>
                         <option value="1">1</option>
                         <option value="3">3</option>
-                        <option value="5">5</option>  
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -96,14 +103,14 @@ include '../conexionBBDD/conexion.php';
                     <select name="numero_juegos" required>
                         <option value="" selected>--SELECCIONA UNA OPCIÓN</option>
                         <option value="4">4</option>
-                        <option value="6">6</option>  
+                        <option value="6">6</option>
                     </select>
                 </div>
 
                 <div class="d-grid">
                     <input type="submit" value="Crear Partido" class="btn btn-primary">
                 </div>
-                
+
             </form>
         </div>
         <div class="col text-center py-4">

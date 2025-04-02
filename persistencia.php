@@ -22,7 +22,7 @@ if ($jugadorA && $jugadorB) {
     $puntosBreakGanadosA = $jugadorA['puntosBreakGanados'] ?? null;
     $puntosBreakJugadosA = $jugadorA['puntosBreakJugados'] ?? null;
     $porcentajeBreaksGanadosA = $jugadorA['porcentajeBreaksGanados'] ?? null;
-    //TODO: MODIFICAR TABLA STATS CON CAMPOS NUEVOS
+    
     //jugador B
     $acesB = $jugadorB['aces'] ?? null;
     $dobleFaltaB = $jugadorB['dobleFalta'] ?? null;
@@ -41,22 +41,29 @@ if ($jugadorA && $jugadorB) {
 }
 
 mysqli_select_db($conexion, 'TenniStats');
-
+                //ficha_jugadorA
                 $idJugadorA =   "SELECT ficha_jugador1 
                                 FROM partidos 
                                 WHERE id_partido = (SELECT MAX(id_partido) FROM partidos)";
 
-
+                //obtengo la id del partido
                 $idPartido =  "SELECT MAX(id_partido) FROM partidos";
-//ejecuta consulta idpartido
+                //obtengo la fecha del partido
+                $fechaPartido = "SELECT fecha
+                                FROM partidos
+                                WHERE id_partido = (SELECT MAX(id_partido)
+                                                    FROM partidos)";
 
                 $idPartido = $conexion->query("SELECT MAX(id_partido) FROM partidos")->fetch_assoc()['MAX(id_partido)'];
+                $fechaPartido = $conexion ->query($fechaPartido)->fetch_assoc()['fecha'];
+
+                //PERSISTENCIA JUGADOR_A
 
                 $insertServicio = "INSERT INTO stats
-                (ficha_federativa, id_partido, aces, doble_falta, winner, errores, puntos_break_afrontados, porcentaje_primer_servicio, 
+                (ficha_federativa, id_partido, fecha_partido, aces, doble_falta, winner, errores, puntos_break_afrontados, porcentaje_primer_servicio, 
                 porcentaje_primeros_ganados, porcentaje_segundos_ganados, porcentaje_puntos_servicio_ganados, porcentaje_break_salvados, 
                 puntos_break_ganados, puntos_break_jugados, porcentaje_break_ganados)
-                VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 $insercionA = $conexion->prepare($insertServicio);
@@ -65,8 +72,8 @@ $idJugadorA = $conexion->query("SELECT ficha_jugador1
                                 WHERE id_partido = $idPartido")->fetch_assoc()['ficha_jugador1'];
 
 $insercionA->bind_param(
-    'siiiiiidddddiid',
-    $idJugadorA, $idPartido,
+    'sisiiiiidddddiid',
+    $idJugadorA, $idPartido, $fechaPartido,
     $acesA, $dobleFaltaA, $winnersA, $errorA, $puntosBreakAfrontadosA,
     $porcentajePrimerServicioA, $porcentajePrimerosGanadosA, $porcentajeSegundosGanadoA,
     $porcentajePuntoServicioGanadosA, $porcentajeBreakSalvadosA, $puntosBreakGanadosA,
@@ -74,25 +81,27 @@ $insercionA->bind_param(
 );
 $insercionA->execute();
 
+                //PERSISTENCIA JUGADOR_B
+
                 $idJugadorB =   "SELECT ficha_jugador2 
                                 FROM partidos 
                                 WHERE id_partido = (SELECT MAX(id_partido) FROM partidos)";
 
 
                 $insertResto = "INSERT INTO stats
-                (ficha_federativa, id_partido, aces, doble_falta, winner, errores, puntos_break_afrontados, 
+                (ficha_federativa, id_partido, fecha_partido, aces, doble_falta, winner, errores, puntos_break_afrontados, 
                 porcentaje_primer_servicio, porcentaje_primeros_ganados, porcentaje_segundos_ganados, 
                 porcentaje_puntos_servicio_ganados, porcentaje_break_salvados,
                 puntos_break_ganados, puntos_break_jugados, porcentaje_break_ganados)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $insercionB = $conexion->prepare($insertResto);
 $idJugadorB = $conexion->query("SELECT ficha_jugador2 
                                 FROM partidos 
                                 WHERE id_partido = $idPartido")->fetch_assoc()['ficha_jugador2'];
 $insercionB->bind_param(
-    'siiiiiidddddiid',
-    $idJugadorB, $idPartido,
+    'sisiiiiidddddiid',
+    $idJugadorB, $idPartido, $fechaPartido,
     $acesB, $dobleFaltaB, $winnersB, $errorB, $puntosBreakAfrontadosB,
     $porcentajePrimerServicioB, $porcentajePrimerosGanadosB, $porcentajeSegundosGanadoB,
     $porcentajePuntoServicioGanadosB, $porcentajeBreakSalvadosB, $puntosBreakGanadosB,

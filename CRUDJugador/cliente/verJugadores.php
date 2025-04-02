@@ -38,7 +38,8 @@ $registros = mysqli_query($conexion, $consultar);
             while($registro = mysqli_fetch_assoc($registros)){
             ?>
             <tr>
-                <td><?php echo $registro['ficha_federativa'];?></td>
+                <!-- hacemos un enlace en la ficha del jugador -->
+                <td><a href="statsPaginas/controladoraStats.php?id=<?php echo $registro['ficha_federativa'];?>"><?php echo $registro['ficha_federativa'];?></a></td>
                 <td><?php echo $registro['nombre'];?></td>
                 <td><?php echo $registro['apellidos'];?></td>
                 <td><?php echo $registro['fecha_nacimiento'];?></td>
