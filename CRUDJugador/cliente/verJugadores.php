@@ -39,7 +39,7 @@ $registros = mysqli_query($conexion, $consultar);
             ?>
             <tr>
                 <!-- hacemos un enlace en la ficha del jugador -->
-                <td><a href="statsPaginas/controladoraStats.php?id=<?php echo $registro['ficha_federativa'];?>"><?php echo $registro['ficha_federativa'];?></a></td>
+                <td><a href="statsPaginas/vistaStats.php?id=<?php echo $registro['ficha_federativa'];?>"><?php echo $registro['ficha_federativa'];?></a></td>
                 <td><?php echo $registro['nombre'];?></td>
                 <td><?php echo $registro['apellidos'];?></td>
                 <td><?php echo $registro['fecha_nacimiento'];?></td>
