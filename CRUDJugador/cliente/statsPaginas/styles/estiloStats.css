@@ -1,0 +1,26 @@
+aside{
+    display: block;
+    max-height: 80vh;
+    min-width: 20%;
+    border: black solid 1px;
+    /*padding: 1%;*/
+    overflow-y: scroll;
+    scroll-behavior: auto;
+}
+
+::-webkit-scrollbar{
+    width: 18px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(rgb(67, 121, 67), rgb(52, 182, 52),  rgb(4, 189, 4));
+    border-radius: 30px;
+}
+
+
+aside>div{
+    border: 1px solid black;
+    padding: 5%;
+    background-color: aliceblue;
+}
+

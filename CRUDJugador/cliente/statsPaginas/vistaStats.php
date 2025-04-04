@@ -3,7 +3,7 @@ include '../../../header.php';
 include '../../../conexionBBDD/conexion.php';
 include 'controladoraStats.php';
 ?>
-
+<link rel="stylesheet" href="../statsPaginas/styles/estiloStats.css">
 <div class="text-center display-6 py-4">
     Estadísticas Históricas
 </div>
@@ -43,7 +43,7 @@ $porcentaje_break_ganados = statsHistoricas('porcentaje_break_ganados');
 
 <h1 class="mx-3 mb-4 text-white"><?php echo nombreCompleto($id); ?></h1>
 <main class="d-flex justify-content-around">
-    <section class="mx-5">
+    <section class="ml-5">
         <h3 class="mb-3 text-decoration-underline">Generales</h3>
         <label for="partidosJugados" class="form-label fw-semibold text-success-emphasis bg-white px-3 rounded-pill">Partidos Jugados</label>
         <p id="partidosJugados" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $numero_partidos_jugados ?></p>
@@ -55,7 +55,7 @@ $porcentaje_break_ganados = statsHistoricas('porcentaje_break_ganados');
         <p id="errores" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $errores ?></p>
 
     </section>
-    <section class="mx-5">
+    <section class="ml-5">
         <h3 class="mb-3 text-decoration-underline">Servicio</h3>
         <label for="aces" class="form-label fw-semibold text-success-emphasis bg-white px-3 rounded-pill">Aces</label>
         <p id="aces" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $aces; ?></p>
@@ -74,7 +74,7 @@ $porcentaje_break_ganados = statsHistoricas('porcentaje_break_ganados');
         <label for="porcentajeBreakSalvados" class="form-label fw-semibold text-success-emphasis bg-white px-3 rounded-pill">Porcentaje Breaks Salvados</label>
         <p id="porcentajeBreakSalvados" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $porcentaje_break_salvados . '%' ?></p>
     </section>
-    <section class="mx-5">
+    <section class="ml-5">
         <h3 class="mb-3 text-decoration-underline">Resto</h3>
         <label for="porcentajeBreakGanados" class="form-label fw-semibold text-success-emphasis bg-white px-3 rounded-pill">Porcentaje Breaks Ganados</label>
         <p id="porcentajeBreakGanados" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $porcentaje_break_ganados . '%' ?></p>
@@ -83,8 +83,10 @@ $porcentaje_break_ganados = statsHistoricas('porcentaje_break_ganados');
         <label for="puntosBreakGanados" class="form-label fw-semibold text-success-emphasis bg-white px-3 rounded-pill">Puntos Break Ganados</label>
         <p id="puntosBreakGanados" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $puntos_break_ganados ?></p>
     </section>
+    <aside>
+        <?php echo datosPartido($id) ?>
+    </aside>
 </main>
-
 
 
 

@@ -68,7 +68,7 @@ function statsHistoricas ($campo) {
     return $statsHistoricas;
 }
 
-function nombreCompleto ($id){
+function nombreCompleto (){
     global $id;
     $nombreCompleto = '';
     $datos = getNombreCompleto($id);
@@ -76,6 +76,26 @@ function nombreCompleto ($id){
         $nombreCompleto .= $fila['nombreCompleto'];
     }
     return $nombreCompleto;
+}
+
+function datosPartido (){
+    global $id;
+    $HTMLdatosPartido = '';
+    $datos = getPartidos($id);
+    while ($fila = mysqli_fetch_assoc($datos)){
+        $HTMLdatosPartido .= "<div>
+                                <label>Fecha</label>
+                                <p>". $fila['fecha'] ."</p>
+                                <label>Lugar</label>
+                                <p>".$fila['lugar']."</p>
+                                <label>Categoría</label>
+                                <p>".$fila['categoria']."</p>
+                                <label>VS</label>
+                                <p>".$fila['rival']."</p>
+                                <button>Ver Partido</button>
+                            </div>";
+    }
+    return $HTMLdatosPartido;
 }
 
 
