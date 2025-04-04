@@ -8,7 +8,8 @@ function closeConexion($conexion)
     mysqli_close($conexion);
 }
 
-function getStatsHistoricas($id)
+//stats históricas del jugador
+function getStatsHistoricas($id) 
 {
     global $conexion;
     $consulta = "SELECT *
@@ -26,6 +27,24 @@ function getStatsHistoricas($id)
     cerrarConexion($conexion);
 }
 
+//stats de cada partido
+function getStatsPartido($id, $id_partido) {
+    global $conexion;
+    $consulta = "SELECT *
+                FROM stats_partido
+                WHERE id_partido = $id_partido 
+                AND ficha_federativa = '$id'";
+    $resultado = mysqli_query($conexion, $consulta);
+    if (mysqli_num_rows($resultado) > 0) {
+        return $resultado;
+    } else {
+        echo 'no hay datos';
+    }
+
+    cerrarConexion($conexion);   
+}
+
+//obtener nombre del jugador
 function getNombreCompleto($id)
 {
     global $conexion;
@@ -44,9 +63,10 @@ function getNombreCompleto($id)
     cerrarConexion($conexion);
 }
 
+//obtener partidos de un jugador y rival
 function getPartidos ($id) {
     global $conexion;
-    $consulta = "SELECT p.fecha, p.lugar, p.categoria,
+    $consulta = "SELECT p.fecha, p.lugar, p.categoria, p.id_partido, tipo_superficie,
                     CASE 
                         WHEN p.ficha_jugador1 = '$id' THEN CONCAT(j2.apellidos, ', ', j2.nombre)
                         WHEN p.ficha_jugador2 = '$id' THEN CONCAT(j1.apellidos, ', ', j1.nombre)
@@ -68,3 +88,6 @@ function getPartidos ($id) {
 
     cerrarConexion($conexion);
 }
+
+
+

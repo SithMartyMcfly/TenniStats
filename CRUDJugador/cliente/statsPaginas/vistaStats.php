@@ -19,6 +19,47 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 
+
+if(isset($_GET['id_partido'])){
+    //recogida de datos en variables
+//GENERALES
+$winners = statsPartidos($id, $id_partido,'winners');
+$errores = statsPartidos($id, $id_partido,'errores');
+//SERVICIO
+$aces = statsPartidos($id, $id_partido, 'aces');
+$doble_falta = statsPartidos($id, $id_partido, 'doble_falta');
+$puntos_break_afrontados = statsPartidos($id, $id_partido, 'puntos_break_afrontados');
+$porcentaje_primer_servicio = statsPartidos($id, $id_partido, 'porcentaje_primer_servicio');
+$porcentaje_primeros_ganados = statsPartidos($id, $id_partido, 'porcentaje_primeros_ganados');
+$porcentaje_segundos_ganados = statsPartidos($id, $id_partido, 'porcentaje_segundos_ganados');
+$porcentaje_puntos_servicio_ganados = statsPartidos($id, $id_partido, 'porcentaje_puntos_servicio_ganados');
+$porcentaje_break_salvados = statsPartidos($id, $id_partido, 'porcentaje_break_salvados');
+//RESTO
+$puntos_break_jugados = statsPartidos($id, $id_partido, 'puntos_break_jugados');
+$puntos_break_ganados = statsPartidos($id, $id_partido, 'puntos_break_ganados');
+$porcentaje_break_ganados = statsHistoricas($id, $id_partido, 'porcentaje_break_ganados');
+
+} else {
+    //recogida de datos en variables
+//GENERALES
+$numero_partidos_jugados = statsHistoricas('numero_partidos_jugados');
+$numero_partidos_ganados = statsHistoricas('numero_partidos_ganados');
+$winners = statsHistoricas('winners');
+$errores = statsHistoricas('errores');
+//SERVICIO
+$aces = statsHistoricas('aces');
+$doble_falta = statsHistoricas('doble_falta');
+$puntos_break_afrontados = statsHistoricas('puntos_break_afrontados');
+$porcentaje_primer_servicio = statsHistoricas('porcentaje_primer_servicio');
+$porcentaje_primeros_ganados = statsHistoricas('porcentaje_primeros_ganados');
+$porcentaje_segundos_ganados = statsHistoricas('porcentaje_segundos_ganados');
+$porcentaje_puntos_servicio_ganados = statsHistoricas('porcentaje_puntos_servicio_ganados');
+$porcentaje_break_salvados = statsHistoricas('porcentaje_break_salvados');
+//RESTO
+$puntos_break_jugados = statsHistoricas('puntos_break_jugados');
+$puntos_break_ganados = statsHistoricas('puntos_break_ganados');
+$porcentaje_break_ganados = statsHistoricas('porcentaje_break_ganados');
+}
 //recogida de datos en variables
 //GENERALES
 $numero_partidos_jugados = statsHistoricas('numero_partidos_jugados');
@@ -84,17 +125,14 @@ $porcentaje_break_ganados = statsHistoricas('porcentaje_break_ganados');
         <p id="puntosBreakGanados" class="mb-4 bg-white px-4 rounded-2 fst-italic"><?php echo $puntos_break_ganados ?></p>
     </section>
     <aside>
-        <?php echo datosPartido($id) ?>
+        <?php echo datosPartido($id)?>
     </aside>
 </main>
-
-
-
-
-
-
-
-
+<script>
+    function verEstadisticasPartido (id_partido) {
+        window.location.href="?id=<?php echo $id?>&id_partido=" + id_partido;
+    }
+</script>
 <?php
 include '../../../footer.php';
 ?>

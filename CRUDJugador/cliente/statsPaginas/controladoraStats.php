@@ -68,6 +68,67 @@ function statsHistoricas ($campo) {
     return $statsHistoricas;
 }
 
+function statsPartidos ($id, $id_partido, $campo) {
+    global $id; 
+    global $id_partido;
+
+    $statsPartido = '';
+    $datos = getStatsPartido($id, $id_partido);
+    while ($fila = mysqli_fetch_assoc($datos)){
+        switch ($campo) {
+            case 'aces':
+                return $statsPartido .= $fila['aces'];
+                break;
+            case 'doble_falta':
+                return $statsPartido .= $fila['doble_falta'];
+                break;
+            case 'winners':
+                return $statsPartido .= $fila['winners'];
+                break;
+            case 'errores':
+                return $statsPartido .= $fila['errores'];
+                break;
+            case 'puntos_break_afrontados':
+                return $statsPartido .= $fila['puntos_break_afrontados'];
+                break;
+            case 'porcentaje_primer_servicio':
+                return $statsPartido .= $fila['porcentaje_primer_servicio'];
+                break;
+            case 'porcentaje_primeros_ganados':
+                return $statsPartido .= $fila['porcentaje_primeros_ganados'];
+                break;
+            case 'porcentaje_segundos_ganados':
+                return $statsPartido .= $fila['porcentaje_segundos_ganados'];
+                break;
+            case 'porcentaje_puntos_servicio_ganados':
+                return $statsPartido .= $fila['porcentaje_puntos_servicio_ganados'];
+                break;
+            case 'porcentaje_break_salvados':
+                return $statsPartido .= $fila['porcentaje_break_salvados'];
+                break;
+            case 'puntos_break_ganados':
+                return $statsPartido .= $fila['puntos_break_ganados'];
+                break;
+            case 'puntos_break_jugados':
+                return $statsPartido .= $fila['puntos_break_jugados'];
+                break;
+            case 'porcentaje_break_ganados':
+                return $statsPartido .= $fila['porcentaje_break_ganados'];
+                break;
+            /*case 'numero_partidos_jugados':
+                return $statsPartido .= $fila['numero_partidos_jugados'];
+                break;
+                case 'numero_partidos_ganados':
+                    return $statsPartido .= $fila['numero_partidos_ganados'];
+                break;*/
+            default:
+                var_dump($fila);
+                break;
+
+        }
+    }
+}
+
 function nombreCompleto (){
     global $id;
     $nombreCompleto = '';
@@ -92,7 +153,7 @@ function datosPartido (){
                                 <p>".$fila['categoria']."</p>
                                 <label>VS</label>
                                 <p>".$fila['rival']."</p>
-                                <button>Ver Partido</button>
+                                <button onclick=\"verEstadisticasPartido(".$fila['id_partido'].")>Ver Partido</button>
                             </div>";
     }
     return $HTMLdatosPartido;
