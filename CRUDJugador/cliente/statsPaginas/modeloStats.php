@@ -31,7 +31,7 @@ function getStatsHistoricas($id)
 function getStatsPartido($id, $id_partido) {
     global $conexion;
     $consulta = "SELECT *
-                FROM stats_partido
+                FROM stats_partidos
                 WHERE id_partido = $id_partido 
                 AND ficha_federativa = '$id'";
     $resultado = mysqli_query($conexion, $consulta);
