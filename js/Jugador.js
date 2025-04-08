@@ -174,15 +174,16 @@ class Jugador {
             dobleFalta: this.dobleFalta,
             winners: this.winners,
             errores: this.error,
+            partidoGanado: this.partidoGanado,
             puntosBreakAfrontados: this.puntosBreakAfrontados,
-            puntosBreakGanados : this.puntosBreakGanados, //falta
-            puntosBreakJugados : this.puntosBreakJugados, //falta
+            puntosBreakGanados : this.puntosBreakGanados,
+            puntosBreakJugados : this.puntosBreakJugados,
             porcentajePrimerServicio: this.getPorcentajePrimerServicio,
             porcentajeSegundosGanados: this.getPorcentajeSegundoServicioGanados,
             porcentajePrimerosGanados: this.getPorcentajePrimerServicioGanados,
             porcentajeBreakSalvados: this.getPorcentajeBreakSalvados,
             porcentajePuntoServicioGanados: this.getPorcentajePuntoServicioGanados,
-            porcentajeBreaksGanados: this.getPorcentajeBreaksGanados //falta
+            porcentajeBreaksGanados: this.getPorcentajeBreaksGanados
         }
     }
 }

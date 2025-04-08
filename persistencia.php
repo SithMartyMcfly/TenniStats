@@ -11,6 +11,7 @@ if ($jugadorA && $jugadorB) {
     //jugador A
     $acesA = $jugadorA['aces'] ?? null;
     $dobleFaltaA = $jugadorA['dobleFalta'] ?? null;
+    $partidoGanadoA = $jugadorA['partidoGanado'] ?? null;
     $winnersA = $jugadorA['winners'] ?? null;
     $errorA = $jugadorA['errores'] ?? null;
     $puntosBreakAfrontadosA = $jugadorA['puntosBreakAfrontados'] ?? null;
@@ -26,6 +27,7 @@ if ($jugadorA && $jugadorB) {
     //jugador B
     $acesB = $jugadorB['aces'] ?? null;
     $dobleFaltaB = $jugadorB['dobleFalta'] ?? null;
+    $partidoGanadoB = $jugadorB['partidoGanado'] ?? null;
     $winnersB = $jugadorB['winners'] ?? null;
     $errorB = $jugadorB['errores'] ?? null;
     $puntosBreakAfrontadosB = $jugadorB['puntosBreakAfrontados'] ?? null;
@@ -59,11 +61,11 @@ mysqli_select_db($conexion, 'TenniStats');
 
                 //PERSISTENCIA JUGADOR_A
 
-                $insertServicio = "INSERT INTO stats
-                (ficha_federativa, id_partido, fecha_partido, aces, doble_falta, winner, errores, puntos_break_afrontados, porcentaje_primer_servicio, 
+                $insertServicio = "INSERT INTO stats_partidos
+                (ficha_federativa, id_partido, fecha_partido, aces, doble_falta, partidoGanado, winner, errores, puntos_break_afrontados, porcentaje_primer_servicio, 
                 porcentaje_primeros_ganados, porcentaje_segundos_ganados, porcentaje_puntos_servicio_ganados, porcentaje_break_salvados, 
                 puntos_break_ganados, puntos_break_jugados, porcentaje_break_ganados)
-                VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 $insercionA = $conexion->prepare($insertServicio);
@@ -72,9 +74,9 @@ $idJugadorA = $conexion->query("SELECT ficha_jugador1
                                 WHERE id_partido = $idPartido")->fetch_assoc()['ficha_jugador1'];
 
 $insercionA->bind_param(
-    'sisiiiiidddddiid',
+    'sisiiiiiidddddiid',
     $idJugadorA, $idPartido, $fechaPartido,
-    $acesA, $dobleFaltaA, $winnersA, $errorA, $puntosBreakAfrontadosA,
+    $acesA, $dobleFaltaA, $partidoGanadoA, $winnersA, $errorA, $puntosBreakAfrontadosA,
     $porcentajePrimerServicioA, $porcentajePrimerosGanadosA, $porcentajeSegundosGanadoA,
     $porcentajePuntoServicioGanadosA, $porcentajeBreakSalvadosA, $puntosBreakGanadosA,
     $puntosBreakJugadosA, $porcentajeBreaksGanadosA
@@ -88,21 +90,21 @@ $insercionA->execute();
                                 WHERE id_partido = (SELECT MAX(id_partido) FROM partidos)";
 
 
-                $insertResto = "INSERT INTO stats
-                (ficha_federativa, id_partido, fecha_partido, aces, doble_falta, winner, errores, puntos_break_afrontados, 
+                $insertResto = "INSERT INTO stats_partidos
+                (ficha_federativa, id_partido, fecha_partido, aces, doble_falta, partidoGanado, winner, errores, puntos_break_afrontados, 
                 porcentaje_primer_servicio, porcentaje_primeros_ganados, porcentaje_segundos_ganados, 
                 porcentaje_puntos_servicio_ganados, porcentaje_break_salvados,
                 puntos_break_ganados, puntos_break_jugados, porcentaje_break_ganados)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $insercionB = $conexion->prepare($insertResto);
 $idJugadorB = $conexion->query("SELECT ficha_jugador2 
                                 FROM partidos 
                                 WHERE id_partido = $idPartido")->fetch_assoc()['ficha_jugador2'];
 $insercionB->bind_param(
-    'sisiiiiidddddiid',
+    'sisiiiiiidddddiid',
     $idJugadorB, $idPartido, $fechaPartido,
-    $acesB, $dobleFaltaB, $winnersB, $errorB, $puntosBreakAfrontadosB,
+    $acesB, $dobleFaltaB, $partidoGanadoB, $winnersB, $errorB, $puntosBreakAfrontadosB,
     $porcentajePrimerServicioB, $porcentajePrimerosGanadosB, $porcentajeSegundosGanadoB,
     $porcentajePuntoServicioGanadosB, $porcentajeBreakSalvadosB, $puntosBreakGanadosB,
     $puntosBreakJugadosB, $porcentajeBreaksGanadosB
