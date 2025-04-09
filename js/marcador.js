@@ -168,7 +168,7 @@ function ganadorPartido() {
     if (contadorSetsA === numeroSets) {
         //stat partido ganado jugador A
         finPartido();
-        jugadorA.partidoGanado++;
+        jugadorA.ganadorPartido();
         console.log('Gana jugador A')
         marcadorJuegosA.style.background = 'green';
         marcadorA.innerHTML = "0";
@@ -178,7 +178,7 @@ function ganadorPartido() {
     if (contadorSetsB === numeroSets) {
         //stat partido ganado jugador B
         finPartido();
-        jugadorB.partidoGanado++;
+        jugadorB.ganadorPartido();
         console.log('Gana jugador B');
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
@@ -194,7 +194,8 @@ function finPartido() {
     jugadorA.calcularPorcentajeBreakSalvados(jugadorB.puntosBreakGanados);
     jugadorB.calcularPorcentajeBreakSalvados(jugadorA.puntosBreakGanados);
     deshabilitarEventos();
-    enviarDatos(jugadorA, jugadorB, '../persistencia.php');
+    enviarDatos(jugadorA, jugadorB, '../persistencia.php')
+    //window.location.href="../index.php";
     alert('PARTIDO TERMINADO');
 }
 

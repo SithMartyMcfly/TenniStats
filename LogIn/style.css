@@ -1,0 +1,19 @@
+main{
+    min-height: 100vh;
+    display: flex;
+    background: linear-gradient(rgb(110, 202, 74), rgb(23, 122, 23), green);
+}
+
+main > * {
+    margin: auto;
+}
+
+form{
+    background: linear-gradient(rgb(110, 202, 74), rgb(23, 122, 23), green);
+    text-align: center;
+    align-items: center;
+}
+
+img{
+    margin-top: -15%;
+}

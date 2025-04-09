@@ -32,8 +32,8 @@ class Jugador {
         this.setGanados = 0; //sets que ha jugado el jugador
         this.tieBreaksJugados = 0; //calculada en marcador.js (suma tiebreaks ganados de ambos jugadores)
         this.tieBreaksGanados = 0; //tiebreaks que ha ganado el jugador
-        this.partidoGanado = 0; //partidos que haganado jugador
-        this.partidosJugados = 0; //partidos jugados
+        this.partidoGanado = 0; //partidos que ha ganado jugador
+       
 
     }
 
@@ -140,6 +140,10 @@ class Jugador {
         if (servicio === true) {
             this.puntosAlServicio++;
         }
+    }
+
+    ganadorPartido () {
+        this.partidoGanado++;
     }
 
     //GETTERS
