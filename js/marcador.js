@@ -43,6 +43,7 @@ let contadorSetsA = 0;
 let contadorSetsB = 0;
 let enTieBreak = false; ///cambiar tiebreak en juegos y en puntos
 
+
 /*el numero de sets y juegos viene de forma dinámica desde PHP*/
 if (typeof numeroSets != 'undefined') {
     numeroSets = parseInt(numeroSets, 10);
@@ -94,8 +95,8 @@ function activarTieBreak() {
 }
 
 function actualizarServicio() {
-    let servicioA = document.getElementsByTagName('div')[1];
-    let servicioB = document.getElementsByTagName('div')[4];
+    let servicioA = document.getElementsByTagName('div')[2];
+    let servicioB = document.getElementsByTagName('div')[5];
     if (!enTieBreak) {
         if ((contadorJuegosTotales) % 2 != 0) {
             servicioA.style.visibility = "hidden";

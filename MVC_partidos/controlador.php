@@ -1,6 +1,15 @@
 <?php
 include 'modelo.php';
 
+function idPartido (){
+    $id = '';
+    $datos = getDatosPartidos();
+    while($fila = mysqli_fetch_assoc($datos)){
+        $id = $fila['id_partido'];
+    }
+    return $id;
+}
+
 function tituloPartido() {
     $idPartido = '';
     $datos = getDatosPartidos();

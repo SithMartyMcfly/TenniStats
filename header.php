@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['id']) || ($_SESSION['id'])==''){
+    $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'LogIn/log.php';
+    header('Location:'.$url);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +21,7 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header class="card-header display-2 col text-center bg-success p-2">TenniStats</header>
+    
+    <header class="card-header bg-success display-2 col text-center p-2">TenniStats<div style='float:right; margin-top:-1%; margin-right:1%'><button class="btn btn-dark" onclick="document.location= '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/logout.php'">LogOut</button></div></header>
     <main class="bg-success">
         

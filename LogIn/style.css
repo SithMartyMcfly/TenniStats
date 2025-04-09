@@ -17,3 +17,7 @@ form{
 img{
     margin-top: -15%;
 }
+
+#error{
+    display: none;
+}

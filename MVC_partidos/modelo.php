@@ -12,7 +12,7 @@ function cerrarConexion ($conexion){
 function getDatosPartidos() {
     //hacemos conexión una variable global
     global $conexion;
-    $consulta = "SELECT lugar, fecha, categoria
+    $consulta = "SELECT id_partido, lugar, fecha, categoria
     FROM partidos
     WHERE id_partido = (SELECT MAX(id_partido) 
                         FROM partidos)

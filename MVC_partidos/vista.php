@@ -1,3 +1,29 @@
+<?php
+session_start();
+if (!isset($_SESSION['id']) || ($_SESSION['id'])==''){
+    $url = 'http://'.$_SERVER['HTTP_HOST'].'/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/log.php';
+    header('Location:'.$url);
+}
+
+include '../conexionBBDD/conexion.php';
+include 'controlador.php';
+
+
+mysqli_select_db($conexion, 'TenniStats');
+
+$idPartido = idPartido();
+
+$consulta = "SELECT id_partido
+            from stats_partidos
+            where id_partido = $idPartido";
+
+            $resultado =mysqli_query($conexion, $consulta);
+
+            if (mysqli_num_rows($resultado)>0){ 
+                //header('Location: '.'http://'.$_SERVER['HTTP_HOST'].'/cursoOpenWebinars/ProyectoFinalCiclo/crearPartido/crearPartido.php');
+            }
+            
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +38,7 @@
 </head>
 
 <body>
-    <?php include 'controlador.php';?>
-
+<div style='float:right; margin-top:-1%; margin-right:1%'><button class="btn btn-dark" onclick="document.location= '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/logout.php'">LogOut</button></div>
     <h2 class="text-center my-5"><?php echo tituloPartido(); ?></h2>
     <h3 id="jugadorServicio"><?php echo jugadorServicio() ?>
     </h3>
@@ -86,6 +111,13 @@
     </script>
     <script type="module" src="../js/Jugador.js"></script>
     <script type="module" src="../js/marcador.js"></script>
+    <script>
+        window.addEventListener("keypress", function(event){
+    if (event.keyCode == 13){
+        event.preventDefault();
+    }
+}, false);
+    </script>
     
 </body>
 
