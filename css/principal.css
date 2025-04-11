@@ -1,13 +1,17 @@
 /*tabla gestor de jugadores*/
 
+  #principal{
+    display: flex;
+    justify-content: center;
+  }  
+
   td:hover {
     background-color: lightseagreen;
   }
 
   table {
     text-align: center;
-    width: 70%;
-    margin: auto;
+    max-width: 85%;
   }
 
   form{
@@ -16,11 +20,12 @@
   }
 
   /*iniciar partido*/
+
   .icon-link {
     transition: transform 0.3s ease;
   }
 
   .icon-link-hover:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
   

@@ -11,17 +11,22 @@ if (!isset($_SESSION['id']) || ($_SESSION['id'])==''){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de Jugadores</title>
-    <link rel="shortcut icon" href="logoApp.png" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../ProyectoFinalCiclo/css/principal.css">
 </head>
 <body>
     
-    <header class="card-header bg-success display-2 col text-center p-2">TenniStats<div style='float:right; margin-top:-1%; margin-right:1%'><button class="btn btn-dark" onclick="document.location= '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/logout.php'">LogOut</button></div></header>
+    <header class="card-header bg-success display-2 col text-center p-2">
+        TenniStats
+        <div class="float-end">
+            <button class="btn btn-dark" onclick="document.location= '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/logout.php'">LogOut</button>
+        </div>
+    </header>
     <main class="bg-success">
         

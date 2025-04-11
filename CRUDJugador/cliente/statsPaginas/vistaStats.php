@@ -2,12 +2,6 @@
 include '../../../header.php';
 include '../../../conexionBBDD/conexion.php';
 include 'controladoraStats.php';
-?>
-<link rel="stylesheet" href="../statsPaginas/styles/estiloStats.css">
-<div class="text-center display-6 py-4">
-    Estadísticas Históricas
-</div>
-<?php
 
 //recibimos id que viene del listado de jugadores
 if (isset($_GET['id_jugador'])) {
@@ -20,6 +14,20 @@ if (isset($_GET['id_partido'])) {
 } else {
     $id_partido = null;
 }
+?>
+<link rel="stylesheet" href="../../../css/jugadorStats.css">
+
+<div class="text-center display-6 py-4">
+    <?php //hacemos un if/else con php para mostrar un titulo u otro
+    if(!$id_partido) {
+    ?>
+    Estadísticas Históricas
+    <?php } else { ?>
+    Estadísticas Partido
+    <?php } ?>
+</div>
+<?php
+
 
 
 if($id_partido != null){

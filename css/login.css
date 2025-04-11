@@ -1,6 +1,6 @@
 main{
-    min-height: 100vh;
     display: flex;
+    min-height: 100vh;
     background: linear-gradient(rgb(110, 202, 74), rgb(23, 122, 23), green);
 }
 
