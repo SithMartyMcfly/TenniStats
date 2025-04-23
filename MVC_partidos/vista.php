@@ -102,6 +102,10 @@ $consulta = "SELECT id_partido
             <button type="button" class="btn btn-warning errorb btnb">Error</button>
         </div>
     </section>
+
+    <div class="col text-center py-4">
+            <a href="../../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
+    </div>
     
 
     <script>
@@ -112,11 +116,11 @@ $consulta = "SELECT id_partido
     <script type="module" src="../js/Jugador.js"></script>
     <script type="module" src="../js/marcador.js"></script>
     <script>
-        window.addEventListener("keypress", function(event){
+     /*   window.addEventListener("keypress", function(event){
     if (event.keyCode == 13){
         event.preventDefault();
     }
-}, false);
+}, false);*/
     </script>
     
 </body>

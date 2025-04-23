@@ -168,9 +168,9 @@ function actualizarServicio() {
 function ganadorPartido() {
     if (contadorSetsA === numeroSets) {
         //stat partido ganado jugador A
-        finPartido();
         jugadorA.ganadorPartido();
-        console.log('Gana jugador A')
+        finPartido();
+        console.log('Gana jugador A');
         marcadorJuegosA.style.background = 'green';
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
@@ -178,8 +178,8 @@ function ganadorPartido() {
     }
     if (contadorSetsB === numeroSets) {
         //stat partido ganado jugador B
-        finPartido();
         jugadorB.ganadorPartido();
+        finPartido();
         console.log('Gana jugador B');
         marcadorA.innerHTML = "0";
         marcadorB.innerHTML = "0";
