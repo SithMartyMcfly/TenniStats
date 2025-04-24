@@ -51,8 +51,8 @@ if (typeof numeroSets != 'undefined') {
 if (typeof numeroJuegos != 'undefined') {
     numeroJuegos = parseInt(numeroJuegos, 10);
 } else {
-    console.log ('No entran los juegos');
-}; 
+    console.log('No entran los juegos');
+};
 
 
 
@@ -73,7 +73,7 @@ function ganadorSetB() {
 sets a 4 juegos el tie-break se inicia un juego antes del límite para apuntarse el set
 y cuando es un set normal a 6 se inicia cuando ambos jugadores llegan a 6 juegos*/
 function activarTieBreak() {
-    if (numeroJuegos === 6){
+    if (numeroJuegos === 6) {
         if (enTieBreak = contadorJuegosA === numeroJuegos && contadorJuegosB === numeroJuegos) {
             enTieBreak = true;
             //stat de TB jugados por ambos jugadores
@@ -83,7 +83,7 @@ function activarTieBreak() {
             enTieBreak = false;
         }
     } else {
-        if (enTieBreak = contadorJuegosA === (numeroJuegos-1) && contadorJuegosB === (numeroJuegos-1)) {
+        if (enTieBreak = contadorJuegosA === (numeroJuegos - 1) && contadorJuegosB === (numeroJuegos - 1)) {
             enTieBreak = true;
             //stat de TB jugados por ambos jugadores
             jugadorA.tieBreaksJugados++;
@@ -196,7 +196,6 @@ function finPartido() {
     jugadorB.calcularPorcentajeBreakSalvados(jugadorA.puntosBreakGanados);
     deshabilitarEventos();
     enviarDatos(jugadorA, jugadorB, '../persistencia.php')
-    //window.location.href="../index.php";
     alert('PARTIDO TERMINADO');
 }
 
@@ -251,7 +250,7 @@ function actualizarMarcadorA() {
     if (!enTieBreak) {
         let resultado;
         contadorA++;
-        if(jugadorA.Servicio===true){
+        if (jugadorA.Servicio === true) {
             jugadorA.puntoServicio++;
         } else {
             jugadorB.puntoServicio++;
@@ -308,7 +307,7 @@ function actualizarMarcadorB() {
     if (!enTieBreak) {
         let resultado;
         contadorB++;
-        if(jugadorA.Servicio===true){
+        if (jugadorA.Servicio === true) {
             jugadorA.puntoServicio++;
         } else {
             jugadorB.puntoServicio++;
@@ -379,7 +378,7 @@ cerrarModal.forEach(boton => {
                 jugadorA.incrementaAce();
                 if (jugadorA.Primero === true && jugadorA.Servicio === true) {
                     jugadorA.ganadoPrimeroServicio++;
-                } else if (jugadorA.Primero=== false && jugadorA.Servicio === true) {
+                } else if (jugadorA.Primero === false && jugadorA.Servicio === true) {
                     jugadorA.ganadoSegundoServicio++;
                 }
                 break;
@@ -390,7 +389,7 @@ cerrarModal.forEach(boton => {
                 jugadorA.incrementaWinner();
                 if (jugadorA.Primero === true && jugadorA.Servicio === true) {
                     jugadorA.ganadoPrimeroServicio++;
-                } else if (jugadorA.Primero=== false && jugadorA.Servicio === true) {
+                } else if (jugadorA.Primero === false && jugadorA.Servicio === true) {
                     jugadorA.ganadoSegundoServicio++;
                 }
                 break;
@@ -398,7 +397,7 @@ cerrarModal.forEach(boton => {
                 jugadorB.incrementarError();
                 if (jugadorA.Primero === true && jugadorA.Servicio === true) {
                     jugadorA.ganadoPrimeroServicio++;
-                } else if (jugadorA.Primero=== false && jugadorA.Servicio === true) {
+                } else if (jugadorA.Primero === false && jugadorA.Servicio === true) {
                     jugadorA.ganadoSegundoServicio++;
                 }
                 break;
@@ -440,7 +439,7 @@ cerrarModalB.forEach(boton => {
                 jugadorB.incrementaAce();
                 if (jugadorB.Primero === true && jugadorB.Servicio === true) {
                     jugadorB.ganadoPrimeroServicio++;
-                } else if (jugadorB.Primero=== false && jugadorB.Servicio === true) {
+                } else if (jugadorB.Primero === false && jugadorB.Servicio === true) {
                     jugadorB.ganadoSegundoServicio++;
                 }
                 break;
@@ -451,15 +450,15 @@ cerrarModalB.forEach(boton => {
                 jugadorB.incrementaWinner();
                 if (jugadorB.Primero === true && jugadorB.Servicio === true) {
                     jugadorB.ganadoPrimeroServicio++;
-                } else if (jugadorB.Primero=== false && jugadorB.Servicio === true) {
+                } else if (jugadorB.Primero === false && jugadorB.Servicio === true) {
                     jugadorB.ganadoSegundoServicio++;
                 }
                 break;
             case event.target.classList.contains('errorb'):
-                jugadorA.incrementarError();  
+                jugadorA.incrementarError();
                 if (jugadorB.Primero === true && jugadorB.Servicio === true) {
                     jugadorB.ganadoPrimeroServicio++;
-                } else if (jugadorB.Primero=== false && jugadorB.Servicio === true) {
+                } else if (jugadorB.Primero === false && jugadorB.Servicio === true) {
                     jugadorB.ganadoSegundoServicio++;
                 }
                 break;

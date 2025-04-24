@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || ($_SESSION['id'])==''){
-    $url = 'http://'.$_SERVER['HTTP_HOST'].'/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/log.php';
-    header('Location:'.$url);
+if (!isset($_SESSION['id']) || ($_SESSION['id']) == '') {
+    $url = 'http://' . $_SERVER['HTTP_HOST'] . '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/log.php';
+    header('Location:' . $url);
 }
 
 include '../conexionBBDD/conexion.php';
@@ -17,12 +17,12 @@ $consulta = "SELECT id_partido
             from stats_partidos
             where id_partido = $idPartido";
 
-            $resultado =mysqli_query($conexion, $consulta);
+$resultado = mysqli_query($conexion, $consulta);
 
-            if (mysqli_num_rows($resultado)>0){ 
-                //header('Location: '.'http://'.$_SERVER['HTTP_HOST'].'/cursoOpenWebinars/ProyectoFinalCiclo/crearPartido/crearPartido.php');
-            }
-            
+if (mysqli_num_rows($resultado) > 0) {
+    //header('Location: '.'http://'.$_SERVER['HTTP_HOST'].'/cursoOpenWebinars/ProyectoFinalCiclo/crearPartido/crearPartido.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@ $consulta = "SELECT id_partido
 </head>
 
 <body>
-<div style='float:right; margin-top:-1%; margin-right:1%'><button class="btn btn-dark" onclick="document.location= '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/logout.php'">LogOut</button></div>
+    <div style='float:right; margin-top:-1%; margin-right:1%'><button class="btn btn-dark" onclick="document.location= '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/logout.php'">LogOut</button></div>
     <h2 class="text-center my-5"><?php echo tituloPartido(); ?></h2>
     <h3 id="jugadorServicio"><?php echo jugadorServicio() ?>
     </h3>
@@ -83,7 +83,7 @@ $consulta = "SELECT id_partido
         </div>
     </main>
     </div>
-<!--Modales para interactuar como se ha producido el punto-->
+    <!--Modales para interactuar como se ha producido el punto-->
     <section class="modal-finPunto">
         <div class="modal-container">
             <h3 class="modal-titulo">¿Como ganó el punto?</h3>
@@ -103,26 +103,22 @@ $consulta = "SELECT id_partido
         </div>
     </section>
 
-    <div class="col text-center py-4">
-            <a href="../../index.php"><img src="../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
-    </div>
-    
-
     <script>
         /*aprovechando el modelo vista controlador, pasamos dinámincamente el número de sets
         a la lógica de nuestra aplicación*/
-        let numeroSets = <?php echo numeroSets();?>, numeroJuegos = <?php echo numeroJuegos()?>
+        let numeroSets = <?php echo numeroSets(); ?>,
+            numeroJuegos = <?php echo numeroJuegos() ?>
     </script>
     <script type="module" src="../js/Jugador.js"></script>
     <script type="module" src="../js/marcador.js"></script>
     <script>
-     /*   window.addEventListener("keypress", function(event){
-    if (event.keyCode == 13){
-        event.preventDefault();
-    }
-}, false);*/
+        window.addEventListener("keypress", function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+            }
+        }, false);
     </script>
-    
+
 </body>
 
 </html>

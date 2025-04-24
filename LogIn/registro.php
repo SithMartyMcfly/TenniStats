@@ -14,7 +14,7 @@ echo 'estas en registro';
 </head>
 <body>
     <main  id="fomulario">
-        <form class="text-white p-5 rounded-4 border border-black" >
+        <form class="text-white p-5 rounded-4 border border-black" action="registrar.php" method="POST">
             <img src="../favicon.ico" alt="tenniStats" width="250px" height="250px">
             <div class="card-header bg-white text-black fw-semibold rounded-2 py-4 mb-4" style="width: 100%">
                 Registro

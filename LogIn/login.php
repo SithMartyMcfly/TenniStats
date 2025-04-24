@@ -36,7 +36,7 @@ if (mysqli_num_rows($resultNick)<=0){
 
 /*en caso de no encontrar una id en la bbdd que coincida
 con el nick y el pass introducidos dara un error de contraseña*/
-$consulta = "SELECT id
+$consulta = "SELECT id_user
             from usuarios
             where nickname = '$nickname'
             and pass = '$pass'";
@@ -52,7 +52,7 @@ $consulta = "SELECT id
         $id = mysqli_fetch_assoc($result);
     
      
-    $_SESSION['id'] = $id;
+    $_SESSION['id_user'] = $id;
 
         echo 'ok';
     }

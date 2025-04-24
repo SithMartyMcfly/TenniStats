@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || ($_SESSION['id'])==''){
+if (!isset($_SESSION['id_user']) || ($_SESSION['id_user'])==''){
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'LogIn/log.php';
     header('Location:'.$url);
 }

@@ -1,6 +1,8 @@
 </main>
 <footer>
-Realizado por: Antonio Jesús Gutiérrez Lebrón
+    <div class="container text-center">
+        2025 - TenniStats Realizado por Antonio Gutierrez
+    </div>
 </footer>
 </body>
 </html>
