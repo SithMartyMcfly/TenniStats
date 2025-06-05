@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || ($_SESSION['id']) == '') {
+if (!isset($_SESSION['id_user']) || ($_SESSION['id_user']) == '') {
     $url = 'http://' . $_SERVER['HTTP_HOST'] . '/cursoOpenWebinars/ProyectoFinalCiclo/LogIn/log.php';
     header('Location:' . $url);
 }
@@ -20,7 +20,6 @@ $consulta = "SELECT id_partido
 $resultado = mysqli_query($conexion, $consulta);
 
 if (mysqli_num_rows($resultado) > 0) {
-    //header('Location: '.'http://'.$_SERVER['HTTP_HOST'].'/cursoOpenWebinars/ProyectoFinalCiclo/crearPartido/crearPartido.php');
 }
 
 ?>

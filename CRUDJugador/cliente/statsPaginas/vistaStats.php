@@ -128,7 +128,11 @@ if($id_partido != null){
         }
     </script>
     </aside>
+
 </main>
+<div class="col text-center py-4">
+            <a href="../verJugadores.php"><img src="../../imagenesCRUD/atras.png" alt="back" height="50px" width="50px"></a>
+        </div>
 <?php
 include '../../../footer.php';
 ?>
